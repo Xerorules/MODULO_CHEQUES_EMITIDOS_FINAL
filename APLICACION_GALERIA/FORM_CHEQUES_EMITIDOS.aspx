@@ -198,7 +198,7 @@
 
     <script type="text/javascript">
         $(function () {
-            $("[id$=TXTCUENTA]").autocomplete({
+            $("[id$=TXTCUENTA2]").autocomplete({
                 source: function (request, response) {
                     $.ajax({
                         url: '<%=ResolveUrl("~/SERVICES/AUTOCOMPLETAR_MOVIMIENTOS.asmx/AUTOCOMPLETAR_CUENTAS") %>',
@@ -223,7 +223,7 @@
                     });
                 },
                 select: function (e, i) {
-                    $("[id$=TXTCUENTA]").val(i.item.text);
+                    $("[id$=TXTCUENTA2]").val(i.item.text);
                     $("[id$=txtID_CUENTA]").val(i.item.val);
                     if (i.item.val != '') {
                         openModalForm();
@@ -240,7 +240,7 @@
                 if (sender._postBackSettings.panelsToUpdate != null) {
 
                     $(function () {
-                        $("[id$=TXTCUENTA]").autocomplete({
+                        $("[id$=TXTCUENTA2]").autocomplete({
                             source: function (request, response) {
                                 $.ajax({
                                     url: '<%=ResolveUrl("~/SERVICES/AUTOCOMPLETAR_MOVIMIENTOS.asmx/AUTOCOMPLETAR_CUENTAS") %>',
@@ -265,7 +265,7 @@
                                 });
                             },
                             select: function (e, i) {
-                                $("[id$=TXTCUENTA]").val(i.item.text);
+                                $("[id$=TXTCUENTA2]").val(i.item.text);
                                 $("[id$=txtID_CUENTA]").val(i.item.val);
                                 if (i.item.val != '') {
                                     openModalForm();
@@ -383,51 +383,57 @@
         <%--<h2 style="color: black; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" class="">EMISION DE CHEQUES</h2>--%>
         &nbsp
     </div>
-    <asp:TextBox ID="txtPROO" runat="server" BorderStyle="None" AutoPostBack="true" BackColor="White" ForeColor="White" Height="1"></asp:TextBox>
-    <asp:TextBox ID="txtIDCHEQUERA" runat="server" BorderStyle="None" BackColor="White" AutoPostBack="true" ForeColor="White" Height="1"></asp:TextBox>
-    <asp:TextBox ID="txtID_CUENTA" runat="server" BorderStyle="None" BackColor="White" ForeColor="White" Height="1" AutoPostBack="true" OnTextChanged="txtID_CUENTA_TextChanged"></asp:TextBox>
+    <div class="visible-xs">
+        <asp:TextBox ID="txtPROO" runat="server" BorderStyle="None" AutoPostBack="true" ForeColor="White" Height="1"></asp:TextBox>
+        <asp:TextBox ID="txtIDCHEQUERA" runat="server" BorderStyle="None" AutoPostBack="true" ForeColor="White" Height="1"></asp:TextBox>
+        <asp:TextBox ID="txtID_CUENTA" runat="server" BorderStyle="None" ForeColor="White" Height="1" AutoPostBack="true" OnTextChanged="txtID_CUENTA_TextChanged"></asp:TextBox>
+    </div>
+
+
     <div class="container-fluid col-lg-12 col-md-12" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; top: 0px;">
         <div class="form-horizontal" style="position: relative; margin-top: 0px;">
 
-            <div class="container col-lg-12 col-md-12" style="color: black; border-radius: 5px 5px 5px 5px; background-color: white; font-size: 12px; margin-top: -40px;">
-                <div class="form-inline col-lg-12 col-md-12">
-                    <div class="form-group col-lg-6 col-md-6" style="margin-top: 10px;">
-                        <div class="col-xs-6 col-md-4" style="left: -20px;">
-                            <asp:TextBox runat="server" ID="TXTCUENTA" CssClass="form-control" placeholder="Busqueda de cuentas" Style="text-transform: uppercase" Wrap="False"></asp:TextBox>
-                        </div>
+            <div class="container col-lg-12 col-md-12" style="color: black; border-radius: 5px 5px 5px 5px; background-color: white; font-size: 12px; margin-top: -20px;">
+                <div class="form-inline">
+                    <div class="input-group col-md-5" style="height: 34px; z-index: 1; float:left; margin-left:-20px;">
 
-                        <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
-                            <ContentTemplate>
-                                <div class="col-xs-6 col-md-4" style="left: -20px;">
-                                    <asp:Button runat="server" ID="BTNCHEQUERA" CssClass="btn btn-info" Text="..." Width="50" Height="34" ToolTip="Seleccionar Chequera" OnClick="BTNCHEQUERA_Click" />
-                                </div>
-                            </ContentTemplate>
-                            <Triggers>
-                                <asp:AsyncPostBackTrigger ControlID="BTNCHEQUERA" EventName="Click" />
+                        <asp:TextBox runat="server" ID="TXTCUENTA2" CssClass="form-control" placeholder="Busqueda de cuentas" Style="text-transform: uppercase"></asp:TextBox>
 
-                            </Triggers>
-                        </asp:UpdatePanel>
+                        <span class="input-group-btn">
+                            <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+
+                                    <asp:Button runat="server" ID="BTNCHEQUERA" CssClass="btn btn-info" Text="..." Height="34" ToolTip="Seleccionar Chequera" OnClick="BTNCHEQUERA_Click" />
+
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="BTNCHEQUERA" EventName="Click" />
+
+                                </Triggers>
+                            </asp:UpdatePanel>
+                        </span>
                     </div>
-                    <div class="form-group col-lg-6 col-md-6" style="margin-top: 10px;">
+                    <div class="col-md-7 right">
                         <asp:UpdatePanel ID="UpdatePanel7" runat="server" UpdateMode="Always">
                             <ContentTemplate>
-                                <div class="col-xs-6 col-md-4" style="left: -20px;">
-                                    <asp:Label runat="server" ID="LBLBANCOCTA" CssClass="label label-info" Text="-" Font-Size="Medium"></asp:Label>
+                                <div class="col-xs-6 col-md-4" style="left:-30px; margin-top: 10px;">
+                                    <asp:Label runat="server" ID="LBLBANCOCTA" CssClass="label" Text="-" Font-Size="Small" BackColor="Black"></asp:Label>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-1" style="color: black">S.CONT:</label>
-                                    <div class="col-xs-6 col-md-3" style="left: 20px;">
-                                      <asp:Label runat="server" ID="LBLSALDOCONT" CssClass="label label-info" Text="-" Font-Size="Medium"></asp:Label>
-                                        
+                                <div class="form-group col-xs-6 col-md-4" style="left:10px;">
+                                    <label class="control-label col-md-2" style="color: black;left:-10px;">S.CONT:</label>
+                                    <div class="col-xs-6 col-md-2" style="margin-top: 10px; left:10px;">
+                                        <asp:Label runat="server" ID="LBLSALDOCONT" CssClass="label" Text="-" Font-Size="Small" BackColor="Black"></asp:Label>
+
                                     </div>
 
                                 </div>
 
-                                <div class="form-group">
-                                    <asp:Label runat="server" ID="LBLNNM" CssClass="col-md-1" Text="S.DISP:" Font-Size="Small" ForeColor="Black"></asp:Label>
+                                <div class="form-group col-xs-6 col-md-4" style="left:20px;">
 
-                                    <div class="col-xs-6 col-md-3" style="left: 20px;">
-                                        <asp:Label runat="server" ID="LBLSALDODIP" CssClass="label label-info" Text="-" Font-Size="Medium"></asp:Label>
+                                    <label class="control-label col-md-2" style="color: black;left:-5px;">S.DISP:</label>
+
+                                    <div class="col-xs-6 col-md-2" style="margin-top: 10px;left:10px;">
+                                        <asp:Label runat="server" ID="LBLSALDODIP" CssClass="label" Text="-" Font-Size="Small" BackColor="Black"></asp:Label>
                                     </div>
                                 </div>
                             </ContentTemplate>
@@ -435,10 +441,22 @@
                         </asp:UpdatePanel>
                     </div>
 
+
+
                 </div>
-                <div>&nbsp;</div>
 
 
+
+
+
+
+
+            </div>
+
+            <div>&nbsp;</div>
+
+            <div style="font-size: 11px;">
+                <hr />
                 <asp:UpdatePanel ID="upd3" runat="server">
                     <ContentTemplate>
 
@@ -499,7 +517,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" style="color: black">N° CHEQ:</label>
                                 <div class="col-xs-12 col-md-9 col-sm-9">
-                                    <asp:TextBox runat="server" ID="TXTNUMERO" CssClass="form-control" placeholder="Ingrese número de cheque" MaxLength="100" onkeydown="return jsDecimals(event);" OnBlur="addCommas(this)"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="TXTNUMERO" CssClass="form-control" placeholder="Ingrese número de cheque" MaxLength="100" onkeydown="return jsDecimals(event);"></asp:TextBox>
                                     <%--VALIDADOR--%>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
                                         ControlToValidate="TXTNUMERO"
@@ -542,7 +560,7 @@
                         </div>
                         <div class="form-horizontal col-xs-12 col-md-4 col-lg-4" style="position: relative; background-color: white;">
                             <div class="form-group">
-                                <div class="col-xs-12 col-md-12" style="margin-left: 0px;">
+                                <div class="col-xs-12 col-md-12" style="margin-left: 0px; background-color: #f1f1f1;">
                                     <asp:UpdatePanel ID="UpdatePanel13" runat="server">
                                         <ContentTemplate>
 
@@ -631,10 +649,12 @@
                         <asp:PostBackTrigger ControlID="btnRegistrar" />
                     </Triggers>
                 </asp:UpdatePanel>
-
-
             </div>
+
+
+
         </div>
+    </div>
     </div>
 
 
@@ -841,7 +861,6 @@
                                         </div>
                                     </div>
 
-                                    <br />
                                     <div class="col-sm-12 col-xs-12">
                                         <hr />
                                         <asp:Label runat="server" CssClass="success">CHEQUERA SELECCIONADA</asp:Label>

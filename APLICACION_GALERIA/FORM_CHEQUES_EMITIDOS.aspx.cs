@@ -52,7 +52,7 @@ namespace APLICACION_GALERIA
                 dgvMOV_CHE.DataBind();
 
                 txtID_CUENTA.Text = "";
-                TXTCUENTA.Text = "";
+                TXTCUENTA2.Text = "";
 
                 Master.label.Text = "EMISION DE CHEQUES";// seteamos el valor
                 //if ()
@@ -62,7 +62,7 @@ namespace APLICACION_GALERIA
                 //HACER QUE CAMBIE EL LABEL DEL MASTER PAGE
                 
                 Response.Write(Master.label.Text);
-                TXTCUENTA.Focus();
+                TXTCUENTA2.Focus();
                 inhabilitar();
                 
                 TXTFGIRO.Text = DateTime.Now.ToString("yyyy-MM-dd");
@@ -85,6 +85,11 @@ namespace APLICACION_GALERIA
             TXTIMPORTE.Enabled = false;
             
             TXTOBS.Enabled = false;
+            txtserie.Enabled = false;
+            txtnumero1.Enabled = false;
+            txtnumero2.Enabled = false;
+            cboFVBV.Enabled = false;
+            btnagregar.Enabled = false;
         }
 
         void habilitar()
@@ -96,6 +101,11 @@ namespace APLICACION_GALERIA
             TXTIMPORTE.Enabled = true;
             
             TXTOBS.Enabled = true;
+            txtserie.Enabled = true;
+            txtnumero1.Enabled = true;
+            txtnumero2.Enabled = true;
+            cboFVBV.Enabled = true;
+            btnagregar.Enabled = true;
         }
 
         protected void txtID_CUENTA_TextChanged(object sender, EventArgs e)
@@ -213,7 +223,7 @@ namespace APLICACION_GALERIA
                                 limpiar();
                                 inhabilitar();
                                 txtID_CUENTA.Text = Session["ID_CUENTA"].ToString();
-                                TXTCUENTA.Text = Session["CUENTA"].ToString();
+                                TXTCUENTA2.Text = Session["CUENTA"].ToString();
                                 LBLCHEQUERA2.Text = "SELECCIONE UNA CHEQUERA";
 
                                 DataTable dt3 = (DataTable)Session["GRILLA_DOCS"];
@@ -221,7 +231,7 @@ namespace APLICACION_GALERIA
                                 dgvDATOS2.DataSource = "";
                                 dgvDATOS2.DataBind();
 
-                                TXTCUENTA.Focus();
+                                TXTCUENTA2.Focus();
                             }
                             else
                             {
@@ -361,7 +371,7 @@ namespace APLICACION_GALERIA
                                 limpiar();
                                 inhabilitar();
                                 txtID_CUENTA.Text = Session["ID_CUENTA"].ToString();
-                                TXTCUENTA.Text = Session["CUENTA"].ToString();
+                            TXTCUENTA2.Text = Session["CUENTA"].ToString();
                                 LBLCHEQUERA2.Text = "SELECCIONE UNA CHEQUERA";
 
                             DataTable dt3 = (DataTable)Session["GRILLA_DOCS"];
@@ -369,7 +379,7 @@ namespace APLICACION_GALERIA
                             dgvDATOS2.DataSource = "";
                             dgvDATOS2.DataBind();
 
-                            TXTCUENTA.Focus();
+                            TXTCUENTA2.Focus();
                                 Session["VARIABLE_ACTUALIZAR"] = "";
                             }
                             else
@@ -500,11 +510,11 @@ namespace APLICACION_GALERIA
 
            
 
-            if (txtID_CUENTA.Text != string.Empty && TXTCUENTA.Text.Length > 12)
+            if (txtID_CUENTA.Text != string.Empty && TXTCUENTA2.Text.Length > 12)
             {
                 string id_cuenta = txtID_CUENTA.Text;
                 Session["ID_CUENTA"] = txtID_CUENTA.Text;
-                Session["CUENTA"] = TXTCUENTA.Text;
+                Session["CUENTA"] = TXTCUENTA2.Text;
                 string tipo1 = "CLASICO";
                 string tipo2 = "DIFERIDO";
                 DataTable dt1 = OBJVENTA.NLLENARGRILLACHEQUERAS_EMIT(id_cuenta, tipo1);
@@ -798,7 +808,7 @@ namespace APLICACION_GALERIA
 
         void limpiar()
         {
-            TXTCUENTA.Text = "";
+            TXTCUENTA2.Text = "";
             txtIDCHEQUERA.Text = "";
             txtID_CUENTA.Text = "";
             TXTIMPORTE.Text = "";
@@ -900,9 +910,9 @@ namespace APLICACION_GALERIA
                     limpiar();
 
                     txtID_CUENTA.Text = Session["ID_CUENTA"].ToString();
-                    TXTCUENTA.Text = Session["CUENTA"].ToString();
+                    TXTCUENTA2.Text = Session["CUENTA"].ToString();
                     LBLCHEQUERA2.Text = "SELECCIONE UNA CHEQUERA";
-                    TXTCUENTA.Focus();
+                    TXTCUENTA2.Focus();
                 }
                 else
                 {
@@ -936,6 +946,138 @@ namespace APLICACION_GALERIA
                 TXTOBS.Text = HttpUtility.HtmlDecode(row.Cells[9].Text.Trim());
                 Session["VARIABLE_ACTUALIZAR"] = "1";
                 habilitar();
+
+                /*----------------LLENAMOS LA GRILLA DE DOCUMENTOS DE VENTA---------------------------*/
+                String cadena = "";
+                string obsnom = HttpUtility.HtmlDecode(row.Cells[9].Text.Trim());
+                string obsq = "&#160;";
+                bool obsbool = obsnom.Contains(obsq);
+                int indexobs = 0;
+                if (obsbool) { indexobs = obsnom.IndexOf(obsq); }
+
+                if(row.Cells[12].Text == "&#160;") { TXTOBS.Text = row.Cells[12].Text.Replace("&#160;", ""); }
+                /*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+                string michi = "#";
+                bool ver = obsnom.Contains(michi);
+                int indx = 0;
+                if (ver) { indx = obsnom.IndexOf(michi); }
+
+                if (indexobs > 0)
+                { TXTOBS.Text = obsnom.Substring(0, indexobs); }
+                if (indx > 0) { TXTOBS.Text = HttpUtility.HtmlDecode(obsnom.Substring(indx + 1)); cadena = obsnom.Substring(0, indx); }
+                else if (indx == 0)
+                {
+                    try
+                    {
+                        if (obsnom.Substring(0, 1) == "#")
+                        {
+                            cadena = obsnom.Substring(1);
+                        }
+                        else
+                        {
+                            cadena = obsnom.Substring(0);
+
+                        }
+                    }
+                    catch { }
+
+
+                }
+
+
+                int ocurrenciasguion = 0;
+                ocurrenciasguion = cadena.Split(new String[] { "-" }, StringSplitOptions.None).Length - 1;
+
+                int ocurrencias = 0;
+                ocurrencias = cadena.Split(new String[] { "//" }, StringSplitOptions.None).Length - 1;
+                int final = 14;
+                int inicio = 0;
+                if (ocurrencias == 0)
+                {
+
+                    try
+                    {
+                        if (obsnom.Substring(0, 1) == "#")
+                        {
+                            TXTOBS.Text = obsnom.Substring(1);
+                        }
+                        else
+                        {
+                            TXTOBS.Text = obsnom.Substring(0);
+                        }
+                    }
+                    catch { }
+
+
+                }
+                //validar_largo de cadenas
+                int largo = obsnom.Length;
+
+                for (int o = 0; o < ocurrencias; o++)
+                {
+                    final = 14;
+                    string parte = obsnom.Substring(inicio, final);
+                    int cuentaguion = 0;
+                    cuentaguion = parte.Split(new String[] { "-" }, StringSplitOptions.None).Length - 1;
+
+                    if (cuentaguion > 0)
+                    {
+                        final = 20;
+                        string CADE_LARGA = obsnom.Substring(inicio, final);
+                        inicio = inicio + final;
+
+                        string doc = CADE_LARGA.Substring(0, 2);
+                        string serie = CADE_LARGA.Substring(3, 3);
+                        string numero = "";
+                        numero = CADE_LARGA.Substring(7, 11);
+
+
+                        /*llenamos la tabla de session*/
+                        DataTable dts = (DataTable)Session["GRILLA_DOCS"];
+
+                        DataRow raw = dts.NewRow();
+                        raw["DOC"] = doc;
+                        raw["SERIE"] = serie;
+                        raw["NUMERO"] = numero;
+
+                        dts.Rows.Add(raw);
+                        dts.AcceptChanges();
+                        LLENAR_GRILLA2();
+                    }
+                    else
+                    {
+                        final = 14;
+                        string CADE_LARGA = obsnom.Substring(inicio, final);
+                        inicio = inicio + final;
+
+                        string doc = CADE_LARGA.Substring(0, 2);
+                        string serie = CADE_LARGA.Substring(3, 3);
+                        string numero = "";
+                        numero = CADE_LARGA.Substring(7, 5);
+
+
+
+                        /*llenamos la tabla de session*/
+                        DataTable dts = (DataTable)Session["GRILLA_DOCS"];
+
+                        DataRow raw = dts.NewRow();
+                        raw["DOC"] = doc;
+                        raw["SERIE"] = serie;
+                        raw["NUMERO"] = numero;
+
+                        dts.Rows.Add(raw);
+                        dts.AcceptChanges();
+                        LLENAR_GRILLA2();
+                    }
+                }
+
+
+
+
+                /*----------------------------------------------------------------------------------------*/
+
+
+
             }
 
 
@@ -1027,9 +1169,9 @@ namespace APLICACION_GALERIA
                     limpiar();
 
                     txtID_CUENTA.Text = Session["ID_CUENTA"].ToString();
-                    TXTCUENTA.Text = Session["CUENTA"].ToString();
+                    TXTCUENTA2.Text = Session["CUENTA"].ToString();
                     LBLCHEQUERA2.Text = "SELECCIONE UNA CHEQUERA";
-                    TXTCUENTA.Focus();
+                    TXTCUENTA2.Focus();
                 }
                 else
                 {
@@ -1066,9 +1208,9 @@ namespace APLICACION_GALERIA
                     limpiar();
 
                     txtID_CUENTA.Text = Session["ID_CUENTA"].ToString();
-                    TXTCUENTA.Text = Session["CUENTA"].ToString();
+                    TXTCUENTA2.Text = Session["CUENTA"].ToString();
                     LBLCHEQUERA2.Text = "SELECCIONE UNA CHEQUERA";
-                    TXTCUENTA.Focus();
+                    TXTCUENTA2.Focus();
                 }
             }
         }
@@ -1141,6 +1283,8 @@ namespace APLICACION_GALERIA
             limpiar();
             inhabilitar();
             lblmensajeproveedor.Visible = false;
+            dgvDATOS2.DataSource = "";
+            dgvDATOS2.DataBind();
         }
 
         protected void Button2_Click(object sender, EventArgs e)
@@ -1151,131 +1295,6 @@ namespace APLICACION_GALERIA
 
         protected void BTNAGREGARDOCVTA_Click(object sender, ImageClickEventArgs e)
         {
-            String cadena = "";
-            string obsnom = HttpUtility.HtmlDecode(TXTOBS.Text.Trim());
-            string obsq = "&#160;";
-            bool obsbool = obsnom.Contains(obsq);
-            int indexobs = 0;
-            if (obsbool) { indexobs = obsnom.IndexOf(obsq); }
-            /*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-            string michi = "#";
-            bool ver = obsnom.Contains(michi);
-            int indx = 0;
-            if (ver) { indx = obsnom.IndexOf(michi); }
-
-            if (indexobs > 0)
-            { TXTOBS.Text = obsnom.Substring(0, indexobs); }
-            if (indx > 0) { TXTOBS.Text = HttpUtility.HtmlDecode(obsnom.Substring(indx + 1)); cadena = obsnom.Substring(0, indx); }
-            else if (indx == 0)
-            {
-                try
-                {
-                    if (obsnom.Substring(0, 1) == "#")
-                    {
-                        cadena = obsnom.Substring(1);
-                    }
-                    else
-                    {
-                        cadena = obsnom.Substring(0);
-
-                    }
-                }
-                catch { }
-
-                
-            }
-
-
-            int ocurrenciasguion = 0;
-            ocurrenciasguion = cadena.Split(new String[] { "-" }, StringSplitOptions.None).Length - 1;
-
-            int ocurrencias = 0;
-            ocurrencias = cadena.Split(new String[] { "//" }, StringSplitOptions.None).Length - 1;
-            int final = 14;
-            int inicio = 0;
-            if (ocurrencias == 0)
-            {
-
-                try
-                {
-                    if (obsnom.Substring(0, 1) == "#")
-                    {
-                        TXTOBS.Text = obsnom.Substring(1);
-                    }
-                    else
-                    {
-                        TXTOBS.Text = obsnom.Substring(0);
-                    }
-                }
-                catch { }
-
-
-            }
-            //validar_largo de cadenas
-            int largo = obsnom.Length;
-
-            for (int o = 0; o < ocurrencias; o++)
-            {
-                final = 14;
-                string parte = obsnom.Substring(inicio, final);
-                int cuentaguion = 0;
-                cuentaguion = parte.Split(new String[] { "-" }, StringSplitOptions.None).Length - 1;
-
-                if (cuentaguion > 0)
-                {
-                    final = 20;
-                    string CADE_LARGA = obsnom.Substring(inicio, final);
-                    inicio = inicio + final;
-
-                    string doc = CADE_LARGA.Substring(0, 2);
-                    string serie = CADE_LARGA.Substring(3, 3);
-                    string numero = "";
-                    numero = CADE_LARGA.Substring(7, 11);
-
-
-                    /*llenamos la tabla de session*/
-                    DataTable dts = (DataTable)Session["GRILLA_DOCS"];
-
-                    DataRow raw = dts.NewRow();
-                    raw["DOC"] = doc;
-                    raw["SERIE"] = serie;
-                    raw["NUMERO"] = numero;
-
-                    dts.Rows.Add(raw);
-                    dts.AcceptChanges();
-                    LLENAR_GRILLA2();
-                }
-                else
-                {
-                    final = 14;
-                    string CADE_LARGA = obsnom.Substring(inicio, final);
-                    inicio = inicio + final;
-
-                    string doc = CADE_LARGA.Substring(0, 2);
-                    string serie = CADE_LARGA.Substring(3, 3);
-                    string numero = "";
-                    numero = CADE_LARGA.Substring(7, 5);
-
-
-
-                    /*llenamos la tabla de session*/
-                    DataTable dts = (DataTable)Session["GRILLA_DOCS"];
-
-                    DataRow raw = dts.NewRow();
-                    raw["DOC"] = doc;
-                    raw["SERIE"] = serie;
-                    raw["NUMERO"] = numero;
-
-                    dts.Rows.Add(raw);
-                    dts.AcceptChanges();
-                    LLENAR_GRILLA2();
-                }
-            }
-
-
-
-
-            /*----------------------------------------------------------------------------------------*/
             
         }
 

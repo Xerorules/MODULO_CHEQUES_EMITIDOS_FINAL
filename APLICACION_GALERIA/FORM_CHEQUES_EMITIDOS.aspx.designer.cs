@@ -49,13 +49,13 @@ namespace APLICACION_GALERIA {
         protected global::System.Web.UI.WebControls.TextBox txtID_CUENTA;
         
         /// <summary>
-        /// Control TXTCUENTA.
+        /// Control TXTCUENTA2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TXTCUENTA;
+        protected global::System.Web.UI.WebControls.TextBox TXTCUENTA2;
         
         /// <summary>
         /// Control UpdatePanel5.
@@ -101,15 +101,6 @@ namespace APLICACION_GALERIA {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LBLSALDOCONT;
-        
-        /// <summary>
-        /// Control LBLNNM.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LBLNNM;
         
         /// <summary>
         /// Control LBLSALDODIP.

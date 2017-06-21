@@ -159,6 +159,7 @@
   <ItemGroup>
     <Folder Include="font-awesome\" />
     <Folder Include="fonts\" />
+    <Folder Include="REPORTES\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CAPA_ENTIDAD\CAPA_ENTIDAD.csproj">
