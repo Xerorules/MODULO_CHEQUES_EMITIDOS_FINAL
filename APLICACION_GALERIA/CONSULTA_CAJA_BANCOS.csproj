@@ -46,6 +46,9 @@
       <HintPath>..\packages\AjaxControlToolkit.17.1.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -132,6 +135,12 @@
       <DependentUpon>FORM_CHEQUERAS.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="REPORTES\CHEQUES_PRUEBA.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CHEQUES_PRUEBA.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SERVICES\AUTOCOMPLETAR_MOVIMIENTOS.asmx.cs">
       <DependentUpon>AUTOCOMPLETAR_MOVIMIENTOS.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -159,7 +168,6 @@
   <ItemGroup>
     <Folder Include="font-awesome\" />
     <Folder Include="fonts\" />
-    <Folder Include="REPORTES\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CAPA_ENTIDAD\CAPA_ENTIDAD.csproj">
@@ -170,6 +178,15 @@
       <Project>{c004a050-1915-41f8-8404-6748b20aaea3}</Project>
       <Name>CAPA_NEGOCIO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="REPORTES\CHEQUES_PRUEBA.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CHEQUES_PRUEBA.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

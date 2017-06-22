@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="E_CHEQUES.cs" />
     <Compile Include="E_CH_EMITIDOS.cs" />
+    <Compile Include="E_PROVEEDOR.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

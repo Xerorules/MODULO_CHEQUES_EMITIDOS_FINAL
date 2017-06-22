@@ -8,7 +8,6 @@
     <link href="css/font-awesome.css" rel="stylesheet" />
     <script type="text/javascript">
 
-
         function openModalForm() {
             $('#myModalForm').modal('show');
         }
@@ -36,8 +35,6 @@
         function openModalF_MAYOR() {
             $('#myModalFECHA').modal('show');
         }
-
-
 
     </script>
 
@@ -162,6 +159,12 @@
             opacity: 0.2;
         }
 
+        .Background2 {
+            background-color: Black;
+            filter: alpha(opacity=90);
+            opacity: 0.2;
+        }
+
         .Popup {
             background-color: #FFFFFF;
             border-width: 3px;
@@ -187,6 +190,20 @@
             height: 380px;
             opacity: 50;
         }
+
+        .Popup7 {
+            background-color: #FFFFFF;
+            border-width: 3px;
+            border-radius: 5px;
+            border-style: ridge;
+            border-color: black;
+            padding-top: 6px;
+            padding-left: 10px;
+            width: 700px;
+            height: 450px;
+            opacity: 50;
+        }
+       
 
         .lbl {
             font-size: 12px;
@@ -395,7 +412,7 @@
 
             <div class="container col-lg-12 col-md-12" style="color: black; border-radius: 5px 5px 5px 5px; background-color: white; font-size: 12px; margin-top: -20px;">
                 <div class="form-inline">
-                    <div class="input-group col-md-5" style="height: 34px; z-index: 1; float:left; margin-left:-20px;">
+                    <div class="input-group col-md-5" style="height: 34px; z-index: 1; float: left; margin-left: -20px;">
 
                         <asp:TextBox runat="server" ID="TXTCUENTA2" CssClass="form-control" placeholder="Busqueda de cuentas" Style="text-transform: uppercase"></asp:TextBox>
 
@@ -416,23 +433,23 @@
                     <div class="col-md-7 right">
                         <asp:UpdatePanel ID="UpdatePanel7" runat="server" UpdateMode="Always">
                             <ContentTemplate>
-                                <div class="col-xs-6 col-md-4" style="left:-30px; margin-top: 10px;">
+                                <div class="col-xs-6 col-md-4" style="left: -30px; margin-top: 10px;">
                                     <asp:Label runat="server" ID="LBLBANCOCTA" CssClass="label" Text="-" Font-Size="Small" BackColor="Black"></asp:Label>
                                 </div>
-                                <div class="form-group col-xs-6 col-md-4" style="left:10px;">
-                                    <label class="control-label col-md-2" style="color: black;left:-10px;">S.CONT:</label>
-                                    <div class="col-xs-6 col-md-2" style="margin-top: 10px; left:10px;">
+                                <div class="form-group col-xs-6 col-md-4" style="left: 10px;">
+                                    <label class="control-label col-md-2" style="color: black; left: -10px;">S.CONT:</label>
+                                    <div class="col-xs-6 col-md-2" style="margin-top: 10px; left: 10px;">
                                         <asp:Label runat="server" ID="LBLSALDOCONT" CssClass="label" Text="-" Font-Size="Small" BackColor="Black"></asp:Label>
 
                                     </div>
 
                                 </div>
 
-                                <div class="form-group col-xs-6 col-md-4" style="left:20px;">
+                                <div class="form-group col-xs-6 col-md-4" style="left: 20px;">
 
-                                    <label class="control-label col-md-2" style="color: black;left:-5px;">S.DISP:</label>
+                                    <label class="control-label col-md-2" style="color: black; left: -5px;">S.DISP:</label>
 
-                                    <div class="col-xs-6 col-md-2" style="margin-top: 10px;left:10px;">
+                                    <div class="col-xs-6 col-md-2" style="margin-top: 10px; left: 10px;">
                                         <asp:Label runat="server" ID="LBLSALDODIP" CssClass="label" Text="-" Font-Size="Small" BackColor="Black"></asp:Label>
                                     </div>
                                 </div>
@@ -467,7 +484,7 @@
 
                                     <asp:TextBox runat="server" ID="TXTPROOVEEDOR" CssClass="form-control" placeholder="Busqueda de proveedores" MaxLength="999"></asp:TextBox>
                                     <span class="input-group-btn">
-                                        <asp:Button ID="BTNNUEVOPROVEE" runat="server" CssClass="btn btn-warning" ForeColor="Black" Text="..." Height="34" />
+                                        <asp:Button ID="BTNNUEVOPROVEE" runat="server" CssClass="btn btn-warning" ForeColor="Black" Text="..." Height="34" OnClick="BTNNUEVOPROVEE_Click" />
                                     </span>
                                 </div>
 
@@ -654,7 +671,6 @@
 
 
         </div>
-    </div>
     </div>
 
 
@@ -1018,7 +1034,7 @@
     </asp:UpdatePanel>
     <!--POPUP AJAX-->
     <!---------------------------------------------------/////////////////////////////////////////////////////////////////////----- -->
-    <!--------------------------------- POPUP AGREGAR DOC DE VENTA AL CHEQUE_EMITIDO-------------------------------->
+    <!--------------------------------- POPUP REGISTRAR PROVEEDOR-------------------------------->
 
     <asp:UpdatePanel ID="UpdatePanel4" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
@@ -1028,19 +1044,170 @@
                     <ContentTemplate>
                         <input id="Hidden2" type="hidden" name="hddclick" runat="server" />
                         <!-- ModalPopupExtender -->
-                        <cc1:ModalPopupExtender ID="mp3" runat="server" PopupControlID="Panel2" TargetControlID="Hidden2" BackgroundCssClass="Background"
+                        <cc1:ModalPopupExtender ID="mp3" runat="server" PopupControlID="Panel2" TargetControlID="Hidden2" BackgroundCssClass="Background2"
                             BehaviorID="mp3">
                         </cc1:ModalPopupExtender>
-                        <asp:Panel ID="Panel2" runat="server" CssClass="Popup2" align="center" Style="display: none">
+                        <asp:Panel ID="Panel2" runat="server" CssClass="Popup7" align="center" Style="display: none; 
+            background-image: linear-gradient( 135deg, #90F7EC 0%, #32CCBC 100%); ">
 
-                            <div class="container col-lg-12 col-md-12 col-xs-12" style="text-align: center">
-                                <h2 style="font-size: large; color: red;">AGREGAR DOCUMENTOS DE COMPRA</h2>
+                            <div class="container col-lg-12 col-md-12 col-xs-12" style="text-align: center; ">
+                                <h2  style="font-size: large; color: orangered;">REGISTRAR PROVEEDOR</h2>
                                 &nbsp
+                                <table border="0"> 
+                                    <tr style="height: 40px">
+                                        <td style="padding-right:10px;">
+                                            <asp:Label runat="server" CssClass="lbl" Text="TIPO PROV:"></asp:Label>
+                                        </td>
+                                        <td style="padding-left:10px;">
+                                            <asp:DropDownList runat="server" ID="CBOTIPOPROV" CssClass="form-control" AutoPostBack="true" Width="220" OnSelectedIndexChanged="CBOTIPOPROV_SelectedIndexChanged">
+                                                <asp:ListItem Text="-ELEGIR-" Value="OTRO" />
+                                                <asp:ListItem Text="P. NATURAL" Value="PN" />
+                                                <asp:ListItem Text="P.JURÍDICA" Value="PJ" />
+                                            </asp:DropDownList>
+
+                                        </td>
+                                        <td style="padding-left:10px; padding-right:10px;">
+                                            <asp:Label ID="Label5" runat="server" CssClass="lbl" Text="ORIGEN:"></asp:Label>
+                                        </td>
+                                        <td style="padding-left:20px;">
+                                            <asp:DropDownList runat="server" ID="CBONACIOPROV" CssClass="form-control" AutoPostBack="false" Width="220">
+                                                <asp:ListItem Text="-ELEGIR-" Value="OTRO" />
+                                                <asp:ListItem Text="P. NACIONAL" Value="PN" />
+                                                <asp:ListItem Text="P. EXTRANJERA" Value="PE" />
+                                            </asp:DropDownList>
+                                        </td>
+                                    </tr>
+                                    </table>
+                                <table> 
+                                    <tr style="height: 40px">
+                                        <td>
+                                            <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="DESCRIP:"></asp:Label>
+                                        </td>
+                                        <td style="padding-left:18px;">
+                                            <asp:TextBox ID="TXTDESCRIP_PROV" runat="server" Font-Size="14px" CssClass="form-control" Width="480px" Height="35"></asp:TextBox>
+                                        </td>
+                                        
+                                      
+                                    </tr>
+                                    <tr style="height: 40px;">
+                                        <td>
+                                            <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="DIRECCION:"></asp:Label>
+                                        </td>
+                                        <td style="padding-left:18px;">
+                                            <asp:TextBox ID="TXTDIR_PROV" runat="server" Font-Size="14px" CssClass="form-control" Width="480px"></asp:TextBox>
+                                        </td>
+                                        
+                                    </tr>
+                                    </table>
+                                <table>
+                                   
+                                    <tr style="height: 40px">
+                                        <td style="padding-right:0px; ">
+                                            <asp:UpdatePanel runat="server" ID="UPDLBL" UpdateMode="Conditional">
+                                                <ContentTemplate>
+                                                    <asp:Label ID="LBLRUC_DNI" runat="server" CssClass="lbl" Text="">N° DOC(*):</asp:Label>
+                                                    </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                             
+                                        </td>
+                                        <td style="padding-left:25px;">
+                                            <asp:UpdatePanel runat="server" ID="UpdatePanel8" UpdateMode="Conditional">
+                                                <ContentTemplate>
+                                                    <asp:TextBox ID="TXTRUC_DNI_PROV" runat="server" Font-Size="14px" CssClass="form-control" Width="220" Height="35"></asp:TextBox>
+                                                    </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                            
+                                        </td>
+                                        <td style="padding-left:10px;">
+                                            <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="TELEFONO:"></asp:Label>
+                                        </td>
+                                        <td style="padding-left:20px;">
+                                            <asp:TextBox ID="TXTTELEFONOPROV" runat="server" Font-Size="14px" Style="text-transform: uppercase" CssClass="form-control" ></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                     <tr style="height: 40px">
+                                        <td style="padding-right:0px;" >
+                                            <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="MOVIL:"></asp:Label>
+                                        </td>
+                                        <td style="padding-left:25px;">
+                                            <asp:TextBox ID="TVTMOVILPRO" runat="server" Font-Size="14px" CssClass="form-control" Width="220"></asp:TextBox>
+                                        </td>
+                                        <td style="padding-left:10px;">
+                                            <asp:Label ID="Label4" runat="server" CssClass="lbl" Text="F. NACI:"></asp:Label>
+                                        </td>
+                                        <td style="padding-left:20px;">
+                                            <asp:TextBox ID="TXTFECHAPROV" TextMode="Date" runat="server" Font-Size="14px" Style="text-transform: uppercase" Height="35" CssClass="form-control" Width="220"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 40px">
+                                        <td style="padding-right:0px;" >
+                                            <asp:Label ID="Label7" runat="server" CssClass="lbl" Text="EMAIL:"></asp:Label>
+                                        </td>
+                                        <td style="padding-left:25px;">
+                                            <asp:TextBox ID="TextBox1" runat="server" Font-Size="14px" CssClass="form-control" Width="220"></asp:TextBox>
+                                        </td>
+                                        <td style="padding-left:10px;">
+                                            <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="WEBSITE:"></asp:Label>
+                                        </td>
+                                        <td style="padding-left:20px;">
+                                            <asp:TextBox ID="TextBox2" TextMode="Date" runat="server" Font-Size="14px" Style="text-transform: uppercase" Height="35" CssClass="form-control" Width="220"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    </table>
+                                <table>
+                                    <tr style="height: 40px">
+                                        <td style="padding-right:0px;" >
+                                            <asp:DropDownList runat="server" ID="DropDownList1" CssClass="form-control" AutoPostBack="false" Width="100">
+                                                <asp:ListItem Text="-PAIS-" Value="OTRO" />
+                                            </asp:DropDownList>
+                                        </td>
+                                        <td style="padding-left:25px;">
+                                            <asp:DropDownList runat="server" ID="DropDownList2" CssClass="form-control" AutoPostBack="false" Width="150">
+                                                <asp:ListItem Text="-REGION-" Value="OTRO" />
+                                            </asp:DropDownList>
+                                        </td>
+                                        
+                                        <td style="padding-left:25px;">
+                                            <asp:DropDownList runat="server" ID="DropDownList3" CssClass="form-control" AutoPostBack="false" Width="180">
+                                                <asp:ListItem Text="-PROVINCIA-" Value="OTRO" />
+                                            </asp:DropDownList>
+                                        </td>
+                                        
+                                        <td style="padding-left:25px;">
+                                           <asp:DropDownList runat="server" ID="DropDownList4" CssClass="form-control" AutoPostBack="false" Width="150">
+                                                <asp:ListItem Text="-DISTRITO-" Value="OTRO" />
+                                            </asp:DropDownList>
+                                        </td>
+                                    </tr>
+
+                                    <asp:Label ID="lblid_cliente" runat="server" CssClass="visible-xs" Text="DESCRIPCIÓN:"></asp:Label>
+                                    <asp:Label ID="lblid_cheque" runat="server" CssClass="visible-xs" Text="DESCRIPCIÓN:"></asp:Label>
+                                    <asp:Label ID="LBLID_MOV" runat="server" CssClass="visible-xs" Text="DESCRIPCIÓN:"></asp:Label>
+
+                                </table>
+                                <div>&nbsp;</div>
+                                <div class="container col-lg-12 col-md-12">
+
+
+                                        <div class="form-group col-lg-12 col-md-12 col-xs-12 center-block">
+
+
+                                            <asp:Button ID="BTNGRABARPROV" runat="server" Text="GRABAR" Width="120px" CssClass="form-control btn btn-info"  OnClick="BTNGRABARPROV_Click" />
+                                            <asp:Button ID="BTNCANCELARPROV" runat="server" Text="CANCELAR" Width="120px" CssClass="form-control btn btn-danger" OnClick="BTNCANCELARPROV_Click"/>
+
+                                        </div>
+
+                                    </div>
                             </div>
 
 
                         </asp:Panel>
                     </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="CBOTIPOPROV" EventName="SelectedIndexChanged"/>
+                        <asp:AsyncPostBackTrigger ControlID="BTNGRABARPROV"  EventName="Click"/>
+                        <asp:AsyncPostBackTrigger ControlID="BTNCANCELARPROV" EventName="Click"/>
+                    </Triggers>
                 </asp:UpdatePanel>
             </div>
 

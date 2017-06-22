@@ -68,6 +68,7 @@ namespace APLICACION_GALERIA
                 TXTFGIRO.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 TXTFCOBRO.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 Session["VARIABLE_ACTUALIZAR"] = "";
+                TXTRUC_DNI_PROV.Enabled = false;
             }
         }
 
@@ -100,7 +101,7 @@ namespace APLICACION_GALERIA
             TXTNUMERO.Enabled = true;
             TXTIMPORTE.Enabled = true;
             
-            TXTOBS.Enabled = true;
+            TXTOBS.Enabled = false;
             txtserie.Enabled = true;
             txtnumero1.Enabled = true;
             txtnumero2.Enabled = true;
@@ -1503,8 +1504,45 @@ namespace APLICACION_GALERIA
             
         }
 
-       
+        protected void BTNNUEVOPROVEE_Click(object sender, EventArgs e)
+        {
+            mp3.Show();
+        }
 
-       
+        protected void BTNGRABARPROV_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void BTNCANCELARPROV_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void CBOTIPOPROV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CBOTIPOPROV.SelectedValue == "PN")
+            {
+                LBLRUC_DNI.Text = "N° DNI(*) : ";
+                LBLRUC_DNI.ForeColor = Color.Red;
+                TXTRUC_DNI_PROV.Enabled = true;
+
+            }
+            else if (CBOTIPOPROV.SelectedValue == "PJ")
+            {
+                LBLRUC_DNI.Text = "N° RUC(*): ";
+                LBLRUC_DNI.ForeColor = Color.Red;
+                TXTRUC_DNI_PROV.Enabled = true;
+
+            }
+            else if (CBOTIPOPROV.SelectedValue == "OTRO")
+            {
+                LBLRUC_DNI.Text = "N° DOC(*):";
+                LBLRUC_DNI.ForeColor = Color.Black;
+                TXTRUC_DNI_PROV.Enabled = false;
+
+            }
+            mp3.Show();
+        }
     }
 }

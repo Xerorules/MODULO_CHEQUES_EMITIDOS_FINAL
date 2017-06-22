@@ -73,7 +73,7 @@ namespace CAPA_NEGOCIO
         {
             return OBJLOGUEO.DREGISTRAR_CHEQUES_EM2(CHQ_EM, cond);
         }
-
+        
         public DataTable NLLENARGRILLACHEQUERAS(E_CHEQUES CHQ)
         {
             return OBJLOGUEO.DLLENARGRILLACHEQUERAS(CHQ);
@@ -112,6 +112,11 @@ namespace CAPA_NEGOCIO
         public DataTable NLLENAR_CABECERA_MOVIMIENTOS(string ID_CTA)
         {
             return OBJLOGUEO.DLLENAR_CABECERA_MOVIMIENTOS(ID_CTA);
+        }
+
+        public string NREGISTRAR_NUEVO_PROVEEDOR(E_PROVEEDOR PRO, int cond)
+        {
+            return OBJLOGUEO.DREGISTRAR_NUEVO_PROVEEDOR(PRO, cond);
         }
 
     }

@@ -532,6 +532,45 @@ namespace CAPA_DATOS
             return dt;
         }
 
+        //REGISTRAR NUEVO PROVEEDOR
+        public string DREGISTRAR_NUEVO_PROVEEDOR(E_PROVEEDOR PR, int cond)
+        {
+            string res = "";
+            try
+            {
+                if (con.State == ConnectionState.Closed) { con.Open(); }
+                SqlCommand cmd = new SqlCommand("SP_PROVEEDOR", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ID_PROVEEDOR", PR.id_proveedor);
+                cmd.Parameters.AddWithValue("@TIPO_PROVEEDOR", PR.tipo_pro);
+                cmd.Parameters.AddWithValue("@ORIGEN_PROVEEDOR", PR.origen_pro);
+                cmd.Parameters.AddWithValue("@DESCRIPCION", PR.descripcion_pro);
+                cmd.Parameters.AddWithValue("@RUC_DNI", PR.ruc_dni_pro);
+                cmd.Parameters.AddWithValue("@TELEFONO_1", PR.tele1_pro);
+                cmd.Parameters.AddWithValue("@TELEFONO_2", PR.tele2_pro);
+                cmd.Parameters.AddWithValue("@MOVIL", PR.movil_pro);
+                cmd.Parameters.AddWithValue("@FECHA_NAC", PR.fecha_nac_pro);
+                cmd.Parameters.AddWithValue("@EMAIL", PR.email_pro);
+                cmd.Parameters.AddWithValue("@WEB_SITE", PR.wesite_pro);
+                cmd.Parameters.AddWithValue("@ESTADO", PR.estado_pro);
+                cmd.Parameters.AddWithValue("@UBIDST", PR.ubigeo_pro);
+                cmd.Parameters.AddWithValue("@CONDICION", cond);
+                int a = cmd.ExecuteNonQuery();
+
+                if (a > 0)
+                {
+                    res = "ok";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                System.Console.Write(ex.Message);
+            }
+
+            if (con.State == ConnectionState.Open) { con.Close(); }
+            return res;
+        }
 
     }
 }
