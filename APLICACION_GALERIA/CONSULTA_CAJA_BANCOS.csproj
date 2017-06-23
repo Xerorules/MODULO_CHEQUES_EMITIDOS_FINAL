@@ -49,6 +49,7 @@
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -70,6 +71,7 @@
     <Content Include="css\main.css" />
     <Content Include="FormConsultarObservacion.aspx" />
     <Content Include="FormConsultaVentas.aspx" />
+    <Content Include="REPORTES\RPT_CHEQUE_DIFERIDO.aspx" />
     <Content Include="FORM_CHEQUES_EMITIDOS.aspx" />
     <Content Include="ICONOS\AUMENTAR.png" />
     <Content Include="ICONOS\busqueda.png" />
@@ -106,6 +108,13 @@
     <Compile Include="FormConsultaVentas.aspx.designer.cs">
       <DependentUpon>FormConsultaVentas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="REPORTES\RPT_CHEQUE_DIFERIDO.aspx.cs">
+      <DependentUpon>RPT_CHEQUE_DIFERIDO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="REPORTES\RPT_CHEQUE_DIFERIDO.aspx.designer.cs">
+      <DependentUpon>RPT_CHEQUE_DIFERIDO.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FORM_CHEQUES_EMITIDOS.aspx.cs">
       <DependentUpon>FORM_CHEQUES_EMITIDOS.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -135,11 +144,16 @@
       <DependentUpon>FORM_CHEQUERAS.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="REPORTES\CHEQUES_PRUEBA.cs">
+    <Compile Include="REPORTES\CHEQUE_BBVA_DIFERIDO.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CHEQUES_PRUEBA.rpt</DependentUpon>
+      <DependentUpon>CHEQUE_BBVA_DIFERIDO.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="REPORTES\DS_IMPRESION_CHEQUES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DS_IMPRESION_CHEQUES.xsd</DependentUpon>
     </Compile>
     <Compile Include="SERVICES\AUTOCOMPLETAR_MOVIMIENTOS.asmx.cs">
       <DependentUpon>AUTOCOMPLETAR_MOVIMIENTOS.asmx</DependentUpon>
@@ -158,6 +172,17 @@
     <Content Include="css\main.css.map" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\CONSULTA_BANCOS.pubxml" />
+    <Content Include="REPORTES\DS_IMPRESION_CHEQUES.xsc">
+      <DependentUpon>DS_IMPRESION_CHEQUES.xsd</DependentUpon>
+    </Content>
+    <None Include="REPORTES\DS_IMPRESION_CHEQUES.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DS_IMPRESION_CHEQUES.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="REPORTES\DS_IMPRESION_CHEQUES.xss">
+      <DependentUpon>DS_IMPRESION_CHEQUES.xsd</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -180,9 +205,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="REPORTES\CHEQUES_PRUEBA.rpt">
+    <EmbeddedResource Include="REPORTES\CHEQUE_BBVA_DIFERIDO.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CHEQUES_PRUEBA.cs</LastGenOutput>
+      <LastGenOutput>CHEQUE_BBVA_DIFERIDO.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

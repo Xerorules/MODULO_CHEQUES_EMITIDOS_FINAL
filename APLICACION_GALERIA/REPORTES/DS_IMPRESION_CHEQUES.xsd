@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DS_IMPRESION_CHEQUES" targetNamespace="http://tempuri.org/DS_IMPRESION_CHEQUES.xsd" xmlns:mstns="http://tempuri.org/DS_IMPRESION_CHEQUES.xsd" xmlns="http://tempuri.org/DS_IMPRESION_CHEQUES.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DS_IMPRESION_CHEQUES" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DS_IMPRESION_CHEQUES" msprop:Generator_UserDSName="DS_IMPRESION_CHEQUES">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CLASICO" msprop:Generator_TableClassName="CLASICODataTable" msprop:Generator_TableVarName="tableCLASICO" msprop:Generator_TablePropName="CLASICO" msprop:Generator_RowDeletingName="CLASICORowDeleting" msprop:Generator_RowChangingName="CLASICORowChanging" msprop:Generator_RowEvHandlerName="CLASICORowChangeEventHandler" msprop:Generator_RowDeletedName="CLASICORowDeleted" msprop:Generator_UserTableName="CLASICO" msprop:Generator_RowChangedName="CLASICORowChanged" msprop:Generator_RowEvArgName="CLASICORowChangeEvent" msprop:Generator_RowClassName="CLASICORow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DD_GIRO" msprop:Generator_ColumnVarNameInTable="columnDD_GIRO" msprop:Generator_ColumnPropNameInRow="DD_GIRO" msprop:Generator_ColumnPropNameInTable="DD_GIROColumn" msprop:Generator_UserColumnName="DD_GIRO" type="xs:string" minOccurs="0" />
+              <xs:element name="MM_GIRO" msprop:Generator_ColumnVarNameInTable="columnMM_GIRO" msprop:Generator_ColumnPropNameInRow="MM_GIRO" msprop:Generator_ColumnPropNameInTable="MM_GIROColumn" msprop:Generator_UserColumnName="MM_GIRO" type="xs:string" minOccurs="0" />
+              <xs:element name="YY_GIRO" msprop:Generator_ColumnVarNameInTable="columnYY_GIRO" msprop:Generator_ColumnPropNameInRow="YY_GIRO" msprop:Generator_ColumnPropNameInTable="YY_GIROColumn" msprop:Generator_UserColumnName="YY_GIRO" type="xs:string" minOccurs="0" />
+              <xs:element name="DESCRIPCION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPCION" msprop:Generator_ColumnPropNameInRow="DESCRIPCION" msprop:Generator_ColumnPropNameInTable="DESCRIPCIONColumn" msprop:Generator_UserColumnName="DESCRIPCION" type="xs:string" minOccurs="0" />
+              <xs:element name="IMPORTE" msprop:Generator_ColumnVarNameInTable="columnIMPORTE" msprop:Generator_ColumnPropNameInRow="IMPORTE" msprop:Generator_ColumnPropNameInTable="IMPORTEColumn" msprop:Generator_UserColumnName="IMPORTE" type="xs:string" minOccurs="0" />
+              <xs:element name="IMPO_ENLETRAS" msprop:Generator_ColumnVarNameInTable="columnIMPO_ENLETRAS" msprop:Generator_ColumnPropNameInRow="IMPO_ENLETRAS" msprop:Generator_ColumnPropNameInTable="IMPO_ENLETRASColumn" msprop:Generator_UserColumnName="IMPO_ENLETRAS" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DIFERIDO" msprop:Generator_TableClassName="DIFERIDODataTable" msprop:Generator_TableVarName="tableDIFERIDO" msprop:Generator_TablePropName="DIFERIDO" msprop:Generator_RowDeletingName="DIFERIDORowDeleting" msprop:Generator_RowChangingName="DIFERIDORowChanging" msprop:Generator_RowEvHandlerName="DIFERIDORowChangeEventHandler" msprop:Generator_RowDeletedName="DIFERIDORowDeleted" msprop:Generator_UserTableName="DIFERIDO" msprop:Generator_RowChangedName="DIFERIDORowChanged" msprop:Generator_RowEvArgName="DIFERIDORowChangeEvent" msprop:Generator_RowClassName="DIFERIDORow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DD_GIRO" msprop:Generator_ColumnVarNameInTable="columnDD_GIRO" msprop:Generator_ColumnPropNameInRow="DD_GIRO" msprop:Generator_ColumnPropNameInTable="DD_GIROColumn" msprop:Generator_UserColumnName="DD_GIRO" type="xs:string" minOccurs="0" />
+              <xs:element name="MM_GIRO" msprop:Generator_ColumnVarNameInTable="columnMM_GIRO" msprop:Generator_ColumnPropNameInRow="MM_GIRO" msprop:Generator_ColumnPropNameInTable="MM_GIROColumn" msprop:Generator_UserColumnName="MM_GIRO" type="xs:string" minOccurs="0" />
+              <xs:element name="YY_GIRO" msprop:Generator_ColumnVarNameInTable="columnYY_GIRO" msprop:Generator_ColumnPropNameInRow="YY_GIRO" msprop:Generator_ColumnPropNameInTable="YY_GIROColumn" msprop:Generator_UserColumnName="YY_GIRO" type="xs:string" minOccurs="0" />
+              <xs:element name="DD_COBRO" msprop:Generator_ColumnVarNameInTable="columnDD_COBRO" msprop:Generator_ColumnPropNameInRow="DD_COBRO" msprop:Generator_ColumnPropNameInTable="DD_COBROColumn" msprop:Generator_UserColumnName="DD_COBRO" type="xs:string" minOccurs="0" />
+              <xs:element name="MM_COBRO" msprop:Generator_ColumnVarNameInTable="columnMM_COBRO" msprop:Generator_ColumnPropNameInRow="MM_COBRO" msprop:Generator_ColumnPropNameInTable="MM_COBROColumn" msprop:Generator_UserColumnName="MM_COBRO" type="xs:string" minOccurs="0" />
+              <xs:element name="YY_COBRO" msprop:Generator_ColumnVarNameInTable="columnYY_COBRO" msprop:Generator_ColumnPropNameInRow="YY_COBRO" msprop:Generator_ColumnPropNameInTable="YY_COBROColumn" msprop:Generator_UserColumnName="YY_COBRO" type="xs:string" minOccurs="0" />
+              <xs:element name="DESCRIPCION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPCION" msprop:Generator_ColumnPropNameInRow="DESCRIPCION" msprop:Generator_ColumnPropNameInTable="DESCRIPCIONColumn" msprop:Generator_UserColumnName="DESCRIPCION" type="xs:string" minOccurs="0" />
+              <xs:element name="IMPORTE" msprop:Generator_ColumnVarNameInTable="columnIMPORTE" msprop:Generator_ColumnPropNameInRow="IMPORTE" msprop:Generator_ColumnPropNameInTable="IMPORTEColumn" msprop:Generator_UserColumnName="IMPORTE" type="xs:string" minOccurs="0" />
+              <xs:element name="IMPO_ENLETRAS" msprop:Generator_ColumnVarNameInTable="columnIMPO_ENLETRAS" msprop:Generator_ColumnPropNameInRow="IMPO_ENLETRAS" msprop:Generator_ColumnPropNameInTable="IMPO_ENLETRASColumn" msprop:Generator_UserColumnName="IMPO_ENLETRAS" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

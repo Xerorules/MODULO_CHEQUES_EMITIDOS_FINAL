@@ -490,7 +490,7 @@ namespace CAPA_DATOS
         }
 
         //FILTRAMOS LA GRILLA CHEQUES EMITIDOS
-        public DataTable DFILTRAR_GRILLA(string FECHA, int ENTERO, decimal DECI, string STRIN, string TIPO)
+        public DataTable DFILTRAR_GRILLA(string FECHA_INI,string FECHA_FIN, int ENTERO, decimal DECI_MIN,decimal DECI_MAX, string STRIN, string TIPO)
         {
             DataTable dt = new DataTable();
             try
@@ -498,9 +498,11 @@ namespace CAPA_DATOS
                 if (con.State == ConnectionState.Closed) { con.Open(); }
                 SqlCommand cmd = new SqlCommand("SP_FILTRO_TODOS_LOS_CAMPOS", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@FECHA", FECHA);
+                cmd.Parameters.AddWithValue("@FECHA_INI", FECHA_INI);
+                cmd.Parameters.AddWithValue("@FECHA_FIN", FECHA_FIN);
                 cmd.Parameters.AddWithValue("@ENTERO", ENTERO);
-                cmd.Parameters.AddWithValue("@DECIMAL", DECI);
+                cmd.Parameters.AddWithValue("@DECIMAL_MIN", DECI_MIN);
+                cmd.Parameters.AddWithValue("@DECIMAL_MAX", DECI_MAX);
                 cmd.Parameters.AddWithValue("@STRING", STRIN);
                 cmd.Parameters.AddWithValue("@TIPO", TIPO);
                 int a = cmd.ExecuteNonQuery();
@@ -546,6 +548,7 @@ namespace CAPA_DATOS
                 cmd.Parameters.AddWithValue("@ORIGEN_PROVEEDOR", PR.origen_pro);
                 cmd.Parameters.AddWithValue("@DESCRIPCION", PR.descripcion_pro);
                 cmd.Parameters.AddWithValue("@RUC_DNI", PR.ruc_dni_pro);
+                cmd.Parameters.AddWithValue("@DIRECCION", PR.direc_pro);
                 cmd.Parameters.AddWithValue("@TELEFONO_1", PR.tele1_pro);
                 cmd.Parameters.AddWithValue("@TELEFONO_2", PR.tele2_pro);
                 cmd.Parameters.AddWithValue("@MOVIL", PR.movil_pro);
@@ -554,7 +557,7 @@ namespace CAPA_DATOS
                 cmd.Parameters.AddWithValue("@WEB_SITE", PR.wesite_pro);
                 cmd.Parameters.AddWithValue("@ESTADO", PR.estado_pro);
                 cmd.Parameters.AddWithValue("@UBIDST", PR.ubigeo_pro);
-                cmd.Parameters.AddWithValue("@CONDICION", cond);
+                cmd.Parameters.AddWithValue("@ACCION", cond);
                 int a = cmd.ExecuteNonQuery();
 
                 if (a > 0)
@@ -570,6 +573,68 @@ namespace CAPA_DATOS
 
             if (con.State == ConnectionState.Open) { con.Close(); }
             return res;
+        }
+
+
+
+        public DataTable DLISTAR_PAIS(string id_pais)
+        {
+            SqlCommand cmd = new SqlCommand("SP_LISTARPAIS", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ID_PAIS", id_pais);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            return dt;
+        }
+
+        public DataTable DLISTAR_DEPARTAMENTO(string cod_pais)
+        {
+            SqlCommand cmd = new SqlCommand("SP_LISTARDEPARTAMENTO_PORPAIS", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@PAIS", cod_pais);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            return dt;
+        }
+
+        public DataTable DLISTAR_PROVINCIA(string cod_dep)
+        {
+            SqlCommand cmd = new SqlCommand("SP_LISTARPROVINCIA", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@dep", cod_dep);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            return dt;
+        }
+
+        public DataTable DLISTAR_DISTRITO(string cod_prov)
+        {
+            SqlCommand cmd = new SqlCommand("SP_LISTARDISTRITO", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@distrito", cod_prov);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            return dt;
+        }
+
+        public DataSet REPORTE_CHEQUES_DIFERIDO(string ID_CHEQUE, string TIPO)
+        {
+            SqlCommand cmd = new SqlCommand("SP_IMPRIMIR_CHEQUES", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ID_CHEQUE", ID_CHEQUE);
+            cmd.Parameters.AddWithValue("@TIPO", TIPO);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            return ds;
         }
 
     }

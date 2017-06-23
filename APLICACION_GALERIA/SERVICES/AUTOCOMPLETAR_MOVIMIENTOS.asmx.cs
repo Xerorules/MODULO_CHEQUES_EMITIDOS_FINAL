@@ -20,6 +20,7 @@ namespace APLICACION_GALERIA.servicios
    [System.Web.Script.Services.ScriptService]
     public class AUTOCOMPLETAR : System.Web.Services.WebService
     {
+        
 
         [WebMethod]
         public string HelloWorld()
@@ -32,6 +33,8 @@ namespace APLICACION_GALERIA.servicios
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public string[] AUTOCOMPLETAR_CUENTAS(string prefix)
         {
+            
+
             List<string> cuentas = new List<string>();
             using (SqlConnection conn = new SqlConnection())
             {
@@ -39,7 +42,11 @@ namespace APLICACION_GALERIA.servicios
                         .ConnectionStrings["sql"].ConnectionString;
                 using (SqlCommand cmd = new SqlCommand("AUTOCOMPLETAR_CUENTAS", conn))
                 {
-                    string id_emp = Session["ID_EMPRESA"].ToString();
+                    string id_emp = "";
+                    
+                         id_emp = Session["ID_EMPRESA"].ToString();
+                    
+                    
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ID_EMPRESA", id_emp);
                     cmd.Parameters.AddWithValue("@DATO", prefix);

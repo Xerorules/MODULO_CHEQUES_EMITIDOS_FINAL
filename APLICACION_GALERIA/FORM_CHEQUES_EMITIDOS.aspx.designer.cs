@@ -112,6 +112,15 @@ namespace APLICACION_GALERIA {
         protected global::System.Web.UI.WebControls.Label LBLSALDODIP;
         
         /// <summary>
+        /// Control LBLTOTALGIRADO.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBLTOTALGIRADO;
+        
+        /// <summary>
         /// Control upd3.
         /// </summary>
         /// <remarks>
@@ -724,13 +733,13 @@ namespace APLICACION_GALERIA {
         protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
-        /// Control TextBox1.
+        /// Control TXTEMAILPROV.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox TXTEMAILPROV;
         
         /// <summary>
         /// Control Label8.
@@ -742,49 +751,85 @@ namespace APLICACION_GALERIA {
         protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// Control TextBox2.
+        /// Control TXTWEBSITEPROV.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox TXTWEBSITEPROV;
         
         /// <summary>
-        /// Control DropDownList1.
+        /// Control Label9.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
-        /// Control DropDownList2.
+        /// Control Label10.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
-        /// Control DropDownList3.
+        /// Control Label11.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList3;
+        protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
-        /// Control DropDownList4.
+        /// Control Label12.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList4;
+        protected global::System.Web.UI.WebControls.Label Label12;
+        
+        /// <summary>
+        /// Control CBOPAIS.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList CBOPAIS;
+        
+        /// <summary>
+        /// Control CBODEPARTAMENTO.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList CBODEPARTAMENTO;
+        
+        /// <summary>
+        /// Control CBOPROVINCIA.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList CBOPROVINCIA;
+        
+        /// <summary>
+        /// Control CBODISTRITO.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList CBODISTRITO;
         
         /// <summary>
         /// Control lblid_cliente.
@@ -841,31 +886,31 @@ namespace APLICACION_GALERIA {
         protected global::System.Web.UI.UpdatePanel UPDGRILLA;
         
         /// <summary>
-        /// Control LBLCHEQUERA2.
+        /// Control LBLCHEQUERA21.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LBLCHEQUERA2;
+        protected global::System.Web.UI.WebControls.Label LBLCHEQUERA21;
         
         /// <summary>
-        /// Control LBLRANGOINI.
+        /// Control LBLRANGOINI2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LBLRANGOINI;
+        protected global::System.Web.UI.WebControls.Label LBLRANGOINI2;
         
         /// <summary>
-        /// Control LBLRANGOFIN.
+        /// Control LBLRANGOFIN2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LBLRANGOFIN;
+        protected global::System.Web.UI.WebControls.Label LBLRANGOFIN2;
         
         /// <summary>
         /// Control txtBUSQUEDA.
@@ -875,6 +920,42 @@ namespace APLICACION_GALERIA {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtBUSQUEDA;
+        
+        /// <summary>
+        /// Control TXTFECHAINI.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TXTFECHAINI;
+        
+        /// <summary>
+        /// Control TXTFECHAFIN.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TXTFECHAFIN;
+        
+        /// <summary>
+        /// Control TXTDECIMIN.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TXTDECIMIN;
+        
+        /// <summary>
+        /// Control TXTDECIMAX.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TXTDECIMAX;
         
         /// <summary>
         /// Control btnMOSTRARTODOS.

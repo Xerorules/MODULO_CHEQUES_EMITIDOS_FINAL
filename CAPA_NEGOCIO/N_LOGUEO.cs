@@ -104,9 +104,9 @@ namespace CAPA_NEGOCIO
             return OBJLOGUEO.DLISTAR_PROVEEDOR(id_cheque);
         }
 
-        public DataTable NFILTRAR_TODOS(string FECHA,int ENTERO,decimal DECI, string STRIN,string TIPO)
+        public DataTable NFILTRAR_TODOS(string FECHA_INI, string FECHA_FIN, int ENTERO, decimal DECI_MIN, decimal DECI_MAX, string STRIN, string TIPOO)
         {
-            return OBJLOGUEO.DFILTRAR_GRILLA(FECHA, ENTERO, DECI, STRIN, TIPO);
+            return OBJLOGUEO.DFILTRAR_GRILLA(FECHA_INI, FECHA_FIN, ENTERO, DECI_MIN, DECI_MAX, STRIN, TIPOO);
         }
 
         public DataTable NLLENAR_CABECERA_MOVIMIENTOS(string ID_CTA)
@@ -119,5 +119,29 @@ namespace CAPA_NEGOCIO
             return OBJLOGUEO.DREGISTRAR_NUEVO_PROVEEDOR(PRO, cond);
         }
 
+        public DataTable NLISTAR_PAIS(string id_pais)
+        {
+            return OBJLOGUEO.DLISTAR_PAIS(id_pais);
+        }
+
+        public DataTable NLISTAR_DEPARTAMENTO(string cod_pais)
+        {
+            return OBJLOGUEO.DLISTAR_DEPARTAMENTO(cod_pais);
+        }
+
+        public DataTable NLISTAR_PROVINCIA(string cod_dep)
+        {
+            return OBJLOGUEO.DLISTAR_PROVINCIA(cod_dep);
+        }
+
+        public DataTable NLISTAR_DISTRITO(string cod_prv)
+        {
+            return OBJLOGUEO.DLISTAR_DISTRITO(cod_prv);
+        }
+
+        public DataSet REPORTE_CHEQUES_EMITIDOS_DIFERIDO(string ID_CHEQUE, string TIPO)
+        {
+            return OBJLOGUEO.REPORTE_CHEQUES_DIFERIDO(ID_CHEQUE, TIPO);
+        }
     }
 }

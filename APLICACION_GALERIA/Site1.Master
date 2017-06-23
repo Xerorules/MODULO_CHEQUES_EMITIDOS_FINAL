@@ -10,7 +10,7 @@
     <link href="css/bootstrap.css" rel="stylesheet" />
     <title>Consultas de Movimientos Bancarios</title>
   </head>
-<body class="sidebar-mini fixed" style="background-color:#f1f1f1;">
+<body class="sidebar-mini fixed" style="background-image: linear-gradient( 135deg, #e5d9ba 0%, #fde2a0 100%);">
     <form id="form1" runat="server">
        <div class="wrapper">
       <!-- Navbar-->
@@ -63,7 +63,7 @@
           </ul>
         </section>
       </aside>
-      <div class="content-wrapper" style="background-color:#f1f1f1;">
+      <div class="content-wrapper" style="background-image: linear-gradient( 135deg, #e5d9ba 0%, #fde2a0 100%);">
           <script src="js/jquery-2.1.4.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />

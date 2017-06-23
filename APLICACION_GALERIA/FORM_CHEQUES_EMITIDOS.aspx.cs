@@ -23,12 +23,14 @@ namespace APLICACION_GALERIA
         public string ope_mov = "";
         public string des_mov = "";
         public decimal impo_mov = 0;
+        
+        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                if (!Page.IsPostBack)
-                {
+                
                     try
                     {
                         string res = Session["ID_EMPRESA"].ToString();
@@ -42,9 +44,11 @@ namespace APLICACION_GALERIA
                     {
                         Response.Redirect("index.aspx");
                     }
-
-                }
-
+                Button2.Enabled = false;
+                btnRegistrar.Enabled = false;
+                btnCancelar.Enabled = false;
+                BTNNUEVOPROVEE.Enabled = false;
+                llenar_combos();
                 dgvBANCOS.DataSource = "";
                 dgvBANCOS.DataBind();
 
@@ -69,12 +73,15 @@ namespace APLICACION_GALERIA
                 TXTFCOBRO.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 Session["VARIABLE_ACTUALIZAR"] = "";
                 TXTRUC_DNI_PROV.Enabled = false;
+
+                
             }
         }
 
         #region OBJETOS
         N_LOGUEO OBJVENTA = new N_LOGUEO();
         E_CH_EMITIDOS OBJCHEQUES = new E_CH_EMITIDOS();
+        E_PROVEEDOR OBJPROV = new E_PROVEEDOR();
         #endregion
 
         void inhabilitar()
@@ -107,6 +114,16 @@ namespace APLICACION_GALERIA
             txtnumero2.Enabled = true;
             cboFVBV.Enabled = true;
             btnagregar.Enabled = true;
+        }
+
+        void llenar_combos()
+        {
+            var tb_pais = OBJVENTA.NLISTAR_PAIS("PP");
+            CBOPAIS.DataSource = tb_pais;
+            CBOPAIS.DataTextField = "UBIPAN";                           
+            CBOPAIS.DataValueField = "UBIPAI";
+            CBOPAIS.DataBind();
+
         }
 
         protected void txtID_CUENTA_TextChanged(object sender, EventArgs e)
@@ -225,7 +242,7 @@ namespace APLICACION_GALERIA
                                 inhabilitar();
                                 txtID_CUENTA.Text = Session["ID_CUENTA"].ToString();
                                 TXTCUENTA2.Text = Session["CUENTA"].ToString();
-                                LBLCHEQUERA2.Text = "SELECCIONE UNA CHEQUERA";
+                                LBLCHEQUERA21.Text = "SELECCIONE UNA CHEQUERA";
 
                                 DataTable dt3 = (DataTable)Session["GRILLA_DOCS"];
                                 dt3.Clear();
@@ -373,7 +390,7 @@ namespace APLICACION_GALERIA
                                 inhabilitar();
                                 txtID_CUENTA.Text = Session["ID_CUENTA"].ToString();
                             TXTCUENTA2.Text = Session["CUENTA"].ToString();
-                                LBLCHEQUERA2.Text = "SELECCIONE UNA CHEQUERA";
+                                LBLCHEQUERA21.Text = "SELECCIONE UNA CHEQUERA";
 
                             DataTable dt3 = (DataTable)Session["GRILLA_DOCS"];
                             dt3.Clear();
@@ -436,42 +453,46 @@ namespace APLICACION_GALERIA
             if (dgvDATOS.Rows.Count == 1)
             {
                                 
-                LBLCHEQUERA2.Text = "CHEQUERA SELECCIONADA";
+                LBLCHEQUERA21.Text = "CHEQUERA SELECCIONADA";
                 
-                LBLCHEQUERA2.ForeColor = System.Drawing.Color.Green;
+                LBLCHEQUERA21.ForeColor = System.Drawing.Color.Green;
                 txtIDCHEQUERA.Text = dgvDATOS.Rows[0].Cells[1].Text;
                 Session["ID_CHEQUERA"] = dgvDATOS.Rows[0].Cells[1].Text;
                 TXTNUMERO.Text = dgvDATOS.Rows[0].Cells[2].Text;
                 llenar_datos();
-                habilitar();
+                
+                //CARGAR LBL DE TOTALES GIRADOS
+                
+                Button2.Enabled = true;
+                
 
                 try
                 {
                     if (Session["ID_CHEQUERA"].ToString() != "" || Session["ID_CHEQUERA"].ToString() != null)
                     {
                         DataTable dt1 = OBJVENTA.NLISTAR_INI_FIN(Session["ID_CHEQUERA"].ToString());
-                        LBLRANGOINI.Text = "N° DE INICIO: " + dt1.Rows[0][0].ToString();
-                        LBLRANGOFIN.Text = "N° DE FIN: " + dt1.Rows[0][1].ToString();
+                        LBLRANGOINI2.Text = "N° DE INICIO: " + dt1.Rows[0][0].ToString();
+                        LBLRANGOFIN2.Text = "N° DE FIN: " + dt1.Rows[0][1].ToString();
                     }
                     else
                     {
-                        LBLRANGOINI.Text = "-";
-                        LBLRANGOFIN.Text = "-";
+                        LBLRANGOINI2.Text = "-";
+                        LBLRANGOFIN2.Text = "-";
                     }
                 }
                 catch
                 {
-                    LBLRANGOINI.Text = "-";
-                    LBLRANGOFIN.Text = "-";
+                    LBLRANGOINI2.Text = "-";
+                    LBLRANGOFIN2.Text = "-";
                 }
 
             }
             else
             {
-                LBLCHEQUERA2.Text = "SELECCIONE UNA CHEQUERA";
-                LBLRANGOINI.Text = "-";
-                LBLRANGOFIN.Text = "-";
-                LBLCHEQUERA2.ForeColor = System.Drawing.Color.Red;
+                LBLCHEQUERA21.Text = "SELECCIONE UNA CHEQUERA";
+                LBLRANGOINI2.Text = "-";
+                LBLRANGOFIN2.Text = "-";
+                LBLCHEQUERA21.ForeColor = System.Drawing.Color.Red;
                 txtIDCHEQUERA.Text = "";
                 inhabilitar();
                
@@ -491,12 +512,14 @@ namespace APLICACION_GALERIA
                 //LBLMONEDA.Text = "SOLES";
                 LBLSALDOCONT.Text = "S/." + Convert.ToDecimal(dt.Rows[0][2].ToString()).ToString("#,###0.00");
                 LBLSALDODIP.Text = "S/." + Convert.ToDecimal(dt.Rows[0][3].ToString()).ToString("#,###0.00");
+                LBLTOTALGIRADO.Text = "S/." + Convert.ToDecimal(dt.Rows[0][4].ToString()).ToString("#,###0.00");
             }
             else if (mone == "D")
             {
                 //LBLMONEDA.Text = "DOLAR";
                 LBLSALDOCONT.Text = "$  " + Convert.ToDecimal(dt.Rows[0][2].ToString()).ToString("#,###0.00");
                 LBLSALDODIP.Text = "$  " + Convert.ToDecimal(dt.Rows[0][3].ToString()).ToString("#,###0.00");
+                LBLTOTALGIRADO.Text = "$" + Convert.ToDecimal(dt.Rows[0][4].ToString()).ToString("#,###0.00");
             }
 
             //LBLNCUENTA.Text = dt.Rows[0][4].ToString();
@@ -541,10 +564,11 @@ namespace APLICACION_GALERIA
             }
             else
             {
-                LBLCHEQUERA2.Text = "";
+                LBLCHEQUERA21.Text = "";
             }
 
             llenar_labels_cabecera();
+
         }
 
               
@@ -872,6 +896,40 @@ namespace APLICACION_GALERIA
 
                 mp2.Show();
             }
+            else if (e.CommandName == "IMAGEN")
+            {
+                GridViewRow row = (GridViewRow)(((ImageButton)e.CommandSource).NamingContainer);
+                /*///////////////////REPORTE DE CHEQUE///////////////////*/
+                
+                string ID_CHEQUE = row.Cells[0].Text;
+                string TIPO = "";
+                String url = "";
+                
+                if (Convert.ToDateTime(row.Cells[2].Text) == (Convert.ToDateTime(row.Cells[3].Text)))
+                {
+                    TIPO = "CLASICO";
+                    object[] args = new object[] { ID_CHEQUE, TIPO };
+                    url = String.Format("REPORTES/RPT_CHEQUE_CLASICO.aspx?ID_CHEQUE={0}&TIPO={1}", args);
+                    
+                }
+                else
+                {
+                    TIPO = "DIFERIDO";
+                    object[] args = new object[] { ID_CHEQUE, TIPO };
+                    url = String.Format("REPORTES/RPT_CHEQUE_DIFERIDO.aspx?ID_CHEQUE={0}&TIPO={1}", args);
+
+                }
+
+                /*-------------------------------------------------------------------*/
+
+
+                string s = "window.open('" + url + "', 'popup_window', 'width=900,height=500,left=10%,top=10%,resizable=yes');"; //con esto muestro la venta en una nueva ventana 
+                //ClientScript.RegisterStartupScript(this.GetType(), "script", s, true); 
+                //se usa scriptmanager porque esta dentro de un update panel
+                ScriptManager.RegisterStartupScript(UPDGRILLA, UPDGRILLA.GetType(), "script", s, true);
+
+
+            }
             else if(e.CommandName == "ELIMINAR")
             {
                 GridViewRow row = (GridViewRow)(((ImageButton)e.CommandSource).NamingContainer);
@@ -912,7 +970,7 @@ namespace APLICACION_GALERIA
 
                     txtID_CUENTA.Text = Session["ID_CUENTA"].ToString();
                     TXTCUENTA2.Text = Session["CUENTA"].ToString();
-                    LBLCHEQUERA2.Text = "SELECCIONE UNA CHEQUERA";
+                    LBLCHEQUERA21.Text = "SELECCIONE UNA CHEQUERA";
                     TXTCUENTA2.Focus();
                 }
                 else
@@ -923,6 +981,10 @@ namespace APLICACION_GALERIA
             }
             else if (e.CommandName == "EDITAR")
             {
+                DataTable dt3 = (DataTable)Session["GRILLA_DOCS"];
+                dt3.Clear();
+                dgvDATOS2.DataSource = "";
+                dgvDATOS2.DataBind();
                 GridViewRow row = (GridViewRow)(((ImageButton)e.CommandSource).NamingContainer);
                 
                 Session["ID_CHEQUE_EMIT"] = row.Cells[0].Text;
@@ -947,6 +1009,9 @@ namespace APLICACION_GALERIA
                 TXTOBS.Text = HttpUtility.HtmlDecode(row.Cells[9].Text.Trim());
                 Session["VARIABLE_ACTUALIZAR"] = "1";
                 habilitar();
+                btnRegistrar.Enabled = true;
+                btnCancelar.Enabled = true;
+                BTNNUEVOPROVEE.Enabled = true;
 
                 /*----------------LLENAMOS LA GRILLA DE DOCUMENTOS DE VENTA---------------------------*/
                 String cadena = "";
@@ -1171,7 +1236,7 @@ namespace APLICACION_GALERIA
 
                     txtID_CUENTA.Text = Session["ID_CUENTA"].ToString();
                     TXTCUENTA2.Text = Session["CUENTA"].ToString();
-                    LBLCHEQUERA2.Text = "SELECCIONE UNA CHEQUERA";
+                    LBLCHEQUERA21.Text = "SELECCIONE UNA CHEQUERA";
                     TXTCUENTA2.Focus();
                 }
                 else
@@ -1210,7 +1275,7 @@ namespace APLICACION_GALERIA
 
                     txtID_CUENTA.Text = Session["ID_CUENTA"].ToString();
                     TXTCUENTA2.Text = Session["CUENTA"].ToString();
-                    LBLCHEQUERA2.Text = "SELECCIONE UNA CHEQUERA";
+                    LBLCHEQUERA21.Text = "SELECCIONE UNA CHEQUERA";
                     TXTCUENTA2.Focus();
                 }
             }
@@ -1225,55 +1290,163 @@ namespace APLICACION_GALERIA
         protected void btnMOSTRARTODOS_Click(object sender, EventArgs e)
         {
             /*-----VALIDACIONES DEL TEXTBOX BUSQUEDA-----*/
-            string FECHA = "";
+            string FECHA_INI = "";
+            string FECHA_FIN = "";
             int ENTERO = 0;
-            decimal DECIMAL = 0;
+            decimal DECIMAL_MIN = 0;
+            decimal DECIMAL_MAX = 0;
             string STRIN = "";
             string TIPO = "";
+            string DATO_BUSQ = "";
 
-            try
+            if ((TXTFECHAINI.Text != null && TXTFECHAFIN.Text != null) && (TXTFECHAINI.Text != "" && TXTFECHAFIN.Text != ""))
             {
-                FECHA = Convert.ToDateTime(txtBUSQUEDA.Text).ToString("dd-MM-yyyy");
-                TIPO = "1";
-            }
-            catch
-            {
-                try
+                if ((TXTDECIMIN.Text != null && TXTDECIMAX.Text != null) && (TXTDECIMIN.Text != "" && TXTDECIMAX.Text != ""))
                 {
-                    ENTERO = Convert.ToInt32(HttpUtility.HtmlDecode(txtBUSQUEDA.Text.Trim()));
-                    TIPO = "2";
-                }
-                catch
-                {
-                    try
-                    {
-                        DECIMAL = Convert.ToDecimal(HttpUtility.HtmlDecode(txtBUSQUEDA.Text.Trim()));
-                        TIPO = "3";
-                    }
-                    catch
+                    if (txtBUSQUEDA.Text != "")
                     {
                         try
                         {
-                            if (txtBUSQUEDA.Text.Trim().Length > 0)
-                            {
-                                STRIN = txtBUSQUEDA.Text.Trim();
-                                TIPO = "4";
-
-                            }
-
-                            if (txtBUSQUEDA.Text.Trim() == "") { TIPO = "5"; }
-
+                            ENTERO = Convert.ToInt32(HttpUtility.HtmlDecode(txtBUSQUEDA.Text.Trim()));
+                            DATO_BUSQ = "E";
                         }
                         catch
                         {
-                            if (txtBUSQUEDA.Text.Trim() == "") { TIPO = "5"; }
-                            
+                            STRIN = txtBUSQUEDA.Text.Trim();
+                            DATO_BUSQ = "S";
                         }
+
+                        if (DATO_BUSQ == "S")
+                        {
+                            FECHA_INI = Convert.ToDateTime(TXTFECHAINI.Text).ToString("dd-MM-yyyy");
+                            FECHA_FIN = Convert.ToDateTime(TXTFECHAFIN.Text).ToString("dd-MM-yyyy");
+                            DECIMAL_MIN = Convert.ToDecimal(HttpUtility.HtmlDecode(TXTDECIMIN.Text.Trim()));
+                            DECIMAL_MAX = Convert.ToDecimal(HttpUtility.HtmlDecode(TXTDECIMAX.Text.Trim()));
+                            TIPO = "7";
+                        }else if (DATO_BUSQ == "E")
+                        {
+                            FECHA_INI = Convert.ToDateTime(TXTFECHAINI.Text).ToString("dd-MM-yyyy");
+                            FECHA_FIN = Convert.ToDateTime(TXTFECHAFIN.Text).ToString("dd-MM-yyyy");
+                            DECIMAL_MIN = Convert.ToDecimal(HttpUtility.HtmlDecode(TXTDECIMIN.Text.Trim()));
+                            DECIMAL_MAX = Convert.ToDecimal(HttpUtility.HtmlDecode(TXTDECIMAX.Text.Trim()));
+                            TIPO = "8";
+                        }
+                        
+                    }
+                    else if (txtBUSQUEDA.Text == "")
+                    {
+                        FECHA_INI = Convert.ToDateTime(TXTFECHAINI.Text).ToString("dd-MM-yyyy");
+                        FECHA_FIN = Convert.ToDateTime(TXTFECHAFIN.Text).ToString("dd-MM-yyyy");
+                        DECIMAL_MIN = Convert.ToDecimal(HttpUtility.HtmlDecode(TXTDECIMIN.Text.Trim()));
+                        DECIMAL_MAX = Convert.ToDecimal(HttpUtility.HtmlDecode(TXTDECIMAX.Text.Trim()));
+                        TIPO = "6";
+                    }
+                }
+                else if (TXTDECIMIN.Text == "" && TXTDECIMAX.Text == "")
+                {
+                    if (txtBUSQUEDA.Text != "")
+                    {
+                        try
+                        {
+                            ENTERO = Convert.ToInt32(HttpUtility.HtmlDecode(txtBUSQUEDA.Text.Trim()));
+                            DATO_BUSQ = "E";
+                        }
+                        catch
+                        {
+                            STRIN = txtBUSQUEDA.Text.Trim();
+                            DATO_BUSQ = "S";
+                        }
+
+                        if (DATO_BUSQ == "S")
+                        {
+                            FECHA_INI = Convert.ToDateTime(TXTFECHAINI.Text).ToString("dd-MM-yyyy");
+                            FECHA_FIN = Convert.ToDateTime(TXTFECHAFIN.Text).ToString("dd-MM-yyyy");
+                            TIPO = "10"; //CREAR UN FILTRO DE FECHAS Y STRING O ENTERO SOLO
+                        }
+                        else if (DATO_BUSQ == "E")
+                        {
+                            FECHA_INI = Convert.ToDateTime(TXTFECHAINI.Text).ToString("dd-MM-yyyy");
+                            FECHA_FIN = Convert.ToDateTime(TXTFECHAFIN.Text).ToString("dd-MM-yyyy");
+                            TIPO = "9"; //CREAR UN FILTRO DE FECHAS Y STRING O ENTERO SOLO
+                        }
+
+                        
+                    }
+                    else if (txtBUSQUEDA.Text == "")
+                    {
+                        FECHA_INI = Convert.ToDateTime(TXTFECHAINI.Text).ToString("dd-MM-yyyy");
+                        FECHA_FIN = Convert.ToDateTime(TXTFECHAFIN.Text).ToString("dd-MM-yyyy");
+                        TIPO = "1"; //CREAR UN FILTRO DE FECHAS SOLO - LISTO
+                    }
+                }
+            }
+            else if (TXTFECHAINI.Text == "" && TXTFECHAFIN.Text == "")
+            {
+                if ((TXTDECIMIN.Text != null && TXTDECIMAX.Text != null) && (TXTDECIMIN.Text != "" && TXTDECIMAX.Text != ""))
+                {
+                    if (txtBUSQUEDA.Text != "")
+                    {
+                        try
+                        {
+                            ENTERO = Convert.ToInt32(HttpUtility.HtmlDecode(txtBUSQUEDA.Text.Trim()));
+                            DATO_BUSQ = "E";
+                        }
+                        catch
+                        {
+                            STRIN = txtBUSQUEDA.Text.Trim();
+                            DATO_BUSQ = "S";
+                        }
+
+                        if (DATO_BUSQ == "S")
+                        {
+                            DECIMAL_MIN = Convert.ToDecimal(HttpUtility.HtmlDecode(TXTDECIMIN.Text.Trim()));
+                            DECIMAL_MAX = Convert.ToDecimal(HttpUtility.HtmlDecode(TXTDECIMAX.Text.Trim()));
+                            TIPO = "11"; //CREAR UN FILTRO DE RANGO DE IMPORTES Y STRING 
+                        }
+                        else if (DATO_BUSQ == "E")
+                        {
+                            DECIMAL_MIN = Convert.ToDecimal(HttpUtility.HtmlDecode(TXTDECIMIN.Text.Trim()));
+                            DECIMAL_MAX = Convert.ToDecimal(HttpUtility.HtmlDecode(TXTDECIMAX.Text.Trim()));
+                            TIPO = "12"; //CREAR UN FILTRO DE RANGO DE IMPORTES Y  ENTERO 
+                        }
+
+                       
+                    }
+                    else if (txtBUSQUEDA.Text == "")
+                    {
+                        
+                        DECIMAL_MIN = Convert.ToDecimal(HttpUtility.HtmlDecode(TXTDECIMIN.Text.Trim()));
+                        DECIMAL_MAX = Convert.ToDecimal(HttpUtility.HtmlDecode(TXTDECIMAX.Text.Trim()));
+                        TIPO = "3"; //CREAR UN FILTRO DE RANGO DE IMPORTES SOLO
+                    }
+                }
+                else if (TXTDECIMIN.Text == "" && TXTDECIMAX.Text == "")
+                {
+                    if (txtBUSQUEDA.Text != "")
+                    {
+                        try
+                        {
+                            ENTERO = Convert.ToInt32(HttpUtility.HtmlDecode(txtBUSQUEDA.Text.Trim()));
+                            TIPO = "2"; //CREAR UN FILTRO ENTERO SOLO
+                        }
+                        catch
+                        {
+                            STRIN = txtBUSQUEDA.Text.Trim();
+                            TIPO = "4"; //CREAR UN FILTRO STRING SOLO
+                        }
+                                               
+                       
+                    }
+                    else if (txtBUSQUEDA.Text == "")
+                    {
+                        Response.Write("<script>alert('DEBE LLENAR LOS CAMPOS PARA LA BÚSQUEDA');</script>");                      
                     }
                 }
             }
 
-            DataTable tbl = OBJVENTA.NFILTRAR_TODOS(FECHA, ENTERO, DECIMAL, STRIN, TIPO);
+            
+
+            DataTable tbl = OBJVENTA.NFILTRAR_TODOS(FECHA_INI,FECHA_FIN, ENTERO, DECIMAL_MIN,DECIMAL_MAX, STRIN, TIPO);
             dgvBANCOS.DataSource = tbl;
             dgvBANCOS.DataBind();
             
@@ -1286,11 +1459,19 @@ namespace APLICACION_GALERIA
             lblmensajeproveedor.Visible = false;
             dgvDATOS2.DataSource = "";
             dgvDATOS2.DataBind();
+
+            btnRegistrar.Enabled = false;
+            btnCancelar.Enabled = false;
+            BTNNUEVOPROVEE.Enabled = false;
+
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
             habilitar();
+            btnRegistrar.Enabled = true;
+            btnCancelar.Enabled = true;
+            BTNNUEVOPROVEE.Enabled = true;
             limpiar();
         }
 
@@ -1511,29 +1692,97 @@ namespace APLICACION_GALERIA
 
         protected void BTNGRABARPROV_Click(object sender, EventArgs e)
         {
+            int cond = 1;
 
+            OBJPROV.id_proveedor = "";
+            OBJPROV.tipo_pro = CBOTIPOPROV.SelectedValue;
+            OBJPROV.origen_pro = CBONACIOPROV.SelectedValue;
+            OBJPROV.descripcion_pro = TXTDESCRIP_PROV.Text;
+            OBJPROV.ruc_dni_pro = TXTRUC_DNI_PROV.Text;
+            OBJPROV.direc_pro = TXTDIR_PROV.Text;
+            OBJPROV.tele1_pro = TXTTELEFONOPROV.Text;
+            OBJPROV.tele2_pro = "";
+            OBJPROV.movil_pro = TVTMOVILPRO.Text;
+            try
+            {
+                OBJPROV.fecha_nac_pro = Convert.ToDateTime(TXTFECHAPROV.Text);
+            }
+            catch
+            {
+                OBJPROV.fecha_nac_pro = Convert.ToDateTime("01-01-1900");
+            }
+            
+            OBJPROV.email_pro = TXTEMAILPROV.Text;
+            OBJPROV.wesite_pro = TXTWEBSITEPROV.Text;
+            OBJPROV.estado_pro = "1";
+            if (CBONACIOPROV.SelectedValue == "PE")
+            {
+                OBJPROV.ubigeo_pro = "000000";
+            }
+            else
+            {
+                OBJPROV.ubigeo_pro = CBODISTRITO.SelectedValue;
+            }
+            
+
+            string res = OBJVENTA.NREGISTRAR_NUEVO_PROVEEDOR(OBJPROV,cond);
+            if (res == "ok")
+            {
+                
+                LIMPIAR_CONTROLES_MANT_PROV();
+                CBOPAIS_SelectedIndexChanged(sender, e);
+                CBODEPARTAMENTO_SelectedIndexChanged(sender, e);
+                CBOPROVINCIA_SelectedIndexChanged(sender, e);
+                CBODISTRITO_SelectedIndexChanged(sender, e);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+                mp3.Dispose();
+                mp3.Hide();
+            }
+            else { ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal5();", true); }
         }
 
         protected void BTNCANCELARPROV_Click(object sender, EventArgs e)
         {
+            LIMPIAR_CONTROLES_MANT_PROV();
+            CBOPAIS_SelectedIndexChanged(sender, e);
+            CBODEPARTAMENTO_SelectedIndexChanged(sender, e);
+            CBOPROVINCIA_SelectedIndexChanged(sender, e);
+            CBODISTRITO_SelectedIndexChanged(sender, e);
+            mp3.Dispose();
+            mp3.Hide();
+        }
 
+        void LIMPIAR_CONTROLES_MANT_PROV()
+        {
+            CBOTIPOPROV.SelectedIndex = 0;
+            CBONACIOPROV.SelectedIndex = 0;
+            TXTDESCRIP_PROV.Text = "";
+            TXTDIR_PROV.Text = "";
+            
+            TXTRUC_DNI_PROV.Text = "";
+            TXTTELEFONOPROV.Text = "";
+            TVTMOVILPRO.Text = "";
+            TXTFECHAPROV.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            TXTEMAILPROV.Text = "";
+            TXTWEBSITEPROV.Text = "";
         }
 
         protected void CBOTIPOPROV_SelectedIndexChanged(object sender, EventArgs e)
         {
+            TXTRUC_DNI_PROV.Text = "";
             if (CBOTIPOPROV.SelectedValue == "PN")
             {
                 LBLRUC_DNI.Text = "N° DNI(*) : ";
                 LBLRUC_DNI.ForeColor = Color.Red;
                 TXTRUC_DNI_PROV.Enabled = true;
-
+                TXTRUC_DNI_PROV.MaxLength = 8;
             }
             else if (CBOTIPOPROV.SelectedValue == "PJ")
             {
                 LBLRUC_DNI.Text = "N° RUC(*): ";
                 LBLRUC_DNI.ForeColor = Color.Red;
                 TXTRUC_DNI_PROV.Enabled = true;
-
+                TXTRUC_DNI_PROV.MaxLength = 11;
             }
             else if (CBOTIPOPROV.SelectedValue == "OTRO")
             {
@@ -1541,6 +1790,127 @@ namespace APLICACION_GALERIA
                 LBLRUC_DNI.ForeColor = Color.Black;
                 TXTRUC_DNI_PROV.Enabled = false;
 
+            }
+            mp3.Show();
+        }
+
+        protected void CBOPAIS_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string pais = CBOPAIS.SelectedValue.ToString();
+            var tb_dep = OBJVENTA.NLISTAR_DEPARTAMENTO(pais);
+            CBODEPARTAMENTO.DataSource = tb_dep;
+            CBODEPARTAMENTO.DataTextField = "UBIDEN";
+            CBODEPARTAMENTO.DataValueField = "UBIDEP";
+            CBODEPARTAMENTO.DataBind();
+
+            CBODEPARTAMENTO_SelectedIndexChanged(sender, e);
+            CBOPROVINCIA_SelectedIndexChanged(sender, e);
+            CBODISTRITO_SelectedIndexChanged(sender, e);
+
+            mp3.Show();
+        }
+
+        protected void CBODEPARTAMENTO_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string dept = CBODEPARTAMENTO.SelectedValue.ToString();
+            var tb_dep = OBJVENTA.NLISTAR_PROVINCIA(dept);
+            CBOPROVINCIA.DataSource = tb_dep;
+            CBOPROVINCIA.DataTextField = "UBIPRN";
+            CBOPROVINCIA.DataValueField = "UBIPRV";
+            CBOPROVINCIA.DataBind();
+
+            CBOPROVINCIA_SelectedIndexChanged(sender, e);
+            CBODISTRITO_SelectedIndexChanged(sender, e);
+            mp3.Show();
+        }
+
+        protected void CBOPROVINCIA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string prov = CBOPROVINCIA.SelectedValue.ToString();
+            var tb_dep = OBJVENTA.NLISTAR_DISTRITO(prov);
+            CBODISTRITO.DataSource = tb_dep;
+            CBODISTRITO.DataTextField = "UBIDSN";
+            CBODISTRITO.DataValueField = "UBIDST";
+            CBODISTRITO.DataBind();
+
+           mp3.Show();
+        }
+
+        protected void CBODISTRITO_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mp3.Show();
+        }
+
+        protected void CBONACIOPROV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CBONACIOPROV.SelectedValue == "PN")
+            {
+                CBODEPARTAMENTO.Enabled = true;
+                CBOPROVINCIA.Enabled = true;
+                CBODISTRITO.Enabled = true;
+
+                DataTable tb_pais = OBJVENTA.NLISTAR_PAIS("PN");
+
+                CBOPAIS.DataSource = tb_pais;
+                CBOPAIS.DataTextField = "UBIPAN";
+                CBOPAIS.DataValueField = "UBIPAI";
+                CBOPAIS.DataBind();
+
+                CBOPAIS.Enabled = true;
+
+                var tb_dep = OBJVENTA.NLISTAR_DEPARTAMENTO("001");
+                CBODEPARTAMENTO.DataSource = tb_dep;
+                CBODEPARTAMENTO.DataTextField = "UBIDEN";
+                CBODEPARTAMENTO.DataValueField = "UBIDEP";
+                CBODEPARTAMENTO.DataBind();
+
+                CBODEPARTAMENTO_SelectedIndexChanged(sender, e);
+                CBOPROVINCIA_SelectedIndexChanged(sender, e);
+                CBODISTRITO_SelectedIndexChanged(sender, e);
+            }
+            else if (CBONACIOPROV.SelectedValue == "PE")
+            {
+                CBODEPARTAMENTO.Enabled = false;
+                CBOPROVINCIA.Enabled = false;
+                CBODISTRITO.Enabled = false;
+
+                DataTable tb_pais = OBJVENTA.NLISTAR_PAIS("PE");
+                
+                CBOPAIS.DataSource = tb_pais;
+                CBOPAIS.DataTextField = "UBIPAN";
+                CBOPAIS.DataValueField = "UBIPAI";
+                CBOPAIS.DataBind();
+                               
+                CBOPAIS.SelectedIndex = 0;
+                CBOPAIS.Enabled = true;
+
+
+                CBODEPARTAMENTO.SelectedIndex = 0;
+                CBOPROVINCIA.SelectedIndex = 0;
+                CBODISTRITO.SelectedIndex = 0;
+
+                CBODEPARTAMENTO_SelectedIndexChanged(sender, e);
+                CBOPROVINCIA_SelectedIndexChanged(sender, e);
+                CBODISTRITO_SelectedIndexChanged(sender, e);
+
+
+            }
+            else if (CBONACIOPROV.SelectedValue == "OTRO")
+            {
+                CBOPAIS.SelectedIndex = 0;
+                CBOPAIS.Enabled = false;
+                
+                CBODEPARTAMENTO.SelectedIndex = 0;
+                CBOPROVINCIA.SelectedIndex = 0;
+                CBODISTRITO.SelectedIndex = 0;
+
+                CBODEPARTAMENTO_SelectedIndexChanged(sender, e);
+                CBOPROVINCIA_SelectedIndexChanged(sender, e);
+                CBODISTRITO_SelectedIndexChanged(sender, e);
+
+                CBODEPARTAMENTO.Enabled = false;
+                CBOPROVINCIA.Enabled = false;
+                CBODISTRITO.Enabled = false;
             }
             mp3.Show();
         }

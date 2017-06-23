@@ -200,7 +200,7 @@
             padding-top: 6px;
             padding-left: 10px;
             width: 700px;
-            height: 450px;
+            height: 470px;
             opacity: 50;
         }
        
@@ -407,10 +407,10 @@
     </div>
 
 
-    <div class="container-fluid col-lg-12 col-md-12" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; top: 0px;">
+    <div class="container-fluid col-lg-12 col-md-12" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; top: 0px;  ">
         <div class="form-horizontal" style="position: relative; margin-top: 0px;">
 
-            <div class="container col-lg-12 col-md-12" style="color: black; border-radius: 5px 5px 5px 5px; background-color: white; font-size: 12px; margin-top: -20px;">
+            <div class="container col-lg-12 col-md-12" style="color: black; border-radius: 5px 5px 5px 5px;  font-size: 12px; margin-top: -20px;">
                 <div class="form-inline">
                     <div class="input-group col-md-5" style="height: 34px; z-index: 1; float: left; margin-left: -20px;">
 
@@ -430,27 +430,42 @@
                             </asp:UpdatePanel>
                         </span>
                     </div>
-                    <div class="col-md-7 right">
+                    <div class="col-md-7 right" style="top:-20px;">
                         <asp:UpdatePanel ID="UpdatePanel7" runat="server" UpdateMode="Always">
                             <ContentTemplate>
-                                <div class="col-xs-6 col-md-4" style="left: -30px; margin-top: 10px;">
-                                    <asp:Label runat="server" ID="LBLBANCOCTA" CssClass="label" Text="-" Font-Size="Small" BackColor="Black"></asp:Label>
+                                
+                                 <div class="form-group col-xs-6 col-md-3" style="left: 10px;">
+                                    <label class="control-label col-md-2" style="color: black; left: -10px;">BANCO:</label>
+                                    <div class="col-xs-6 col-md-12" style="margin-top: 10px; left: -70px;">
+                                        <asp:Label runat="server" ID="LBLBANCOCTA" CssClass="label" Text="-" Font-Size="Small" BackColor="Black"></asp:Label>
+
+                                    </div>
+
                                 </div>
-                                <div class="form-group col-xs-6 col-md-4" style="left: 10px;">
-                                    <label class="control-label col-md-2" style="color: black; left: -10px;">S.CONT:</label>
-                                    <div class="col-xs-6 col-md-2" style="margin-top: 10px; left: 10px;">
+                                <div class="form-group col-xs-6 col-md-3" style="left: 30px;">
+                                    <label class="control-label col-md-2" style="color: black; left: 20px;">S.CONT:</label>
+                                    <div class="col-xs-6 col-md-12" style="margin-top: 10px; left: 10px;">
                                         <asp:Label runat="server" ID="LBLSALDOCONT" CssClass="label" Text="-" Font-Size="Small" BackColor="Black"></asp:Label>
 
                                     </div>
 
                                 </div>
 
-                                <div class="form-group col-xs-6 col-md-4" style="left: 20px;">
+                                <div class="form-group col-xs-6 col-md-3" style="left: 45px;">
 
-                                    <label class="control-label col-md-2" style="color: black; left: -5px;">S.DISP:</label>
+                                    <label class="control-label col-md-2" style="color: black; left: 25px;">S.DISP:</label>
 
-                                    <div class="col-xs-6 col-md-2" style="margin-top: 10px; left: 10px;">
+                                    <div class="col-xs-6 col-md-12" style="margin-top: 10px; left: 10px;">
                                         <asp:Label runat="server" ID="LBLSALDODIP" CssClass="label" Text="-" Font-Size="Small" BackColor="Black"></asp:Label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-xs-6 col-md-3" style="left: 70px;">
+
+                                    <label class="control-label col-md-2" style="color: black; left: -5px;">T.GIRADO:</label>
+
+                                    <div class="col-xs-6 col-md-12" style="margin-top: 10px; left: 10px;">
+                                        <asp:Label runat="server" ID="LBLTOTALGIRADO" CssClass="label" Text="-" Font-Size="Small" BackColor="Black"></asp:Label>
                                     </div>
                                 </div>
                             </ContentTemplate>
@@ -458,14 +473,8 @@
                         </asp:UpdatePanel>
                     </div>
 
-
-
+                    
                 </div>
-
-
-
-
-
 
 
             </div>
@@ -473,11 +482,11 @@
             <div>&nbsp;</div>
 
             <div style="font-size: 11px;">
-                <hr />
+             
                 <asp:UpdatePanel ID="upd3" runat="server">
                     <ContentTemplate>
 
-                        <div class="form-horizontal col-xs-12 col-md-3 col-lg-3" style="position: relative; background-color: white;">
+                        <div class="form-horizontal col-xs-12 col-md-3 col-lg-3" style="position: relative; ">
                             <div class="form-group">
 
                                 <div id="provee" class="input-group" style="height: 35px; z-index: 1;">
@@ -530,7 +539,7 @@
                             </div>
                         </div>
                         <!-- PRIMER GRUPO -->
-                        <div class="form-horizontal col-xs-12 col-md-3 col-lg-3" style="position: relative; background-color: white;">
+                        <div class="form-horizontal col-xs-12 col-md-3 col-lg-3" style="position: relative; ">
                             <div class="form-group">
                                 <label class="control-label col-md-3" style="color: black">N° CHEQ:</label>
                                 <div class="col-xs-12 col-md-9 col-sm-9">
@@ -575,9 +584,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-horizontal col-xs-12 col-md-4 col-lg-4" style="position: relative; background-color: white;">
+                        <div class="form-horizontal col-xs-12 col-md-4 col-lg-4" style="position: relative; ">
                             <div class="form-group">
-                                <div class="col-xs-12 col-md-12" style="margin-left: 0px; background-color: #f1f1f1;">
+                                <div class="col-xs-12 col-md-12" style="margin-left: 0px; ">
                                     <asp:UpdatePanel ID="UpdatePanel13" runat="server">
                                         <ContentTemplate>
 
@@ -645,7 +654,7 @@
                         </div>
                         <!-- SEGUNDO GRUPO -->
 
-                        <div class="form-horizontal col-xs-12 col-md-2 col-lg-2" style="position: relative; background-color: white;">
+                        <div class="form-horizontal col-xs-12 col-md-2 col-lg-2" style="position: relative;">
                             <div class="form-group">
                                 <asp:Button runat="server" Height="0" Width="0" ID="Button2" CssClass="visible-xs" AccessKey="N" OnClick="Button2_Click" />
 
@@ -843,6 +852,7 @@
                                     <div class="col-sm-12">
                                         <div class="col-sm-6 col-xs-10">
                                             <asp:Label runat="server" CssClass="success">CHEQUERAS CLASICAS</asp:Label>
+                                            <div style="width: 100%; height: 100px; overflow-y: scroll;">
                                             <asp:GridView ID="dgvCHEQUERA_CLAS" runat="server" AutoGenerateColumns="true" Font-Size="Small" CssClass="table table-bordered table-condensed table-responsive"
                                                 OnRowCommand="dgvCHEQUERA_CLAS_RowCommand">
                                                 <EmptyDataTemplate>
@@ -856,10 +866,12 @@
                                                     </asp:TemplateField>
                                                 </Columns>
                                             </asp:GridView>
+                                            </div>
 
                                         </div>
                                         <div class="col-sm-6 col-xs-10">
                                             <asp:Label runat="server" CssClass="success">CHEQUERAS PAGO DIFERIDO</asp:Label>
+                                            <div style="width: 100%; height: 100px; overflow-y: scroll;">
                                             <asp:GridView ID="dgvCHEQUERA_DIFE" runat="server" AutoGenerateColumns="true" Font-Size="Small" CssClass="table table-bordered table-condensed table-responsive"
                                                 OnRowCommand="dgvCHEQUERA_DIFE_RowCommand">
                                                 <EmptyDataTemplate>
@@ -873,6 +885,7 @@
                                                     </asp:TemplateField>
                                                 </Columns>
                                             </asp:GridView>
+                                                </div>
 
                                         </div>
                                     </div>
@@ -1070,7 +1083,8 @@
                                             <asp:Label ID="Label5" runat="server" CssClass="lbl" Text="ORIGEN:"></asp:Label>
                                         </td>
                                         <td style="padding-left:20px;">
-                                            <asp:DropDownList runat="server" ID="CBONACIOPROV" CssClass="form-control" AutoPostBack="false" Width="220">
+                                            <asp:DropDownList runat="server" ID="CBONACIOPROV" CssClass="form-control" AutoPostBack="true" Width="220" OnSelectedIndexChanged="CBONACIOPROV_SelectedIndexChanged"
+                                                >
                                                 <asp:ListItem Text="-ELEGIR-" Value="OTRO" />
                                                 <asp:ListItem Text="P. NACIONAL" Value="PN" />
                                                 <asp:ListItem Text="P. EXTRANJERA" Value="PE" />
@@ -1081,10 +1095,10 @@
                                 <table> 
                                     <tr style="height: 40px">
                                         <td>
-                                            <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="DESCRIP:"></asp:Label>
+                                            <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="NOM ó R.S:"></asp:Label>
                                         </td>
                                         <td style="padding-left:18px;">
-                                            <asp:TextBox ID="TXTDESCRIP_PROV" runat="server" Font-Size="14px" CssClass="form-control" Width="480px" Height="35"></asp:TextBox>
+                                            <asp:TextBox ID="TXTDESCRIP_PROV" runat="server" Font-Size="14px" CssClass="form-control" Style="text-transform: uppercase" Width="530" Height="35"></asp:TextBox>
                                         </td>
                                         
                                       
@@ -1094,7 +1108,7 @@
                                             <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="DIRECCION:"></asp:Label>
                                         </td>
                                         <td style="padding-left:18px;">
-                                            <asp:TextBox ID="TXTDIR_PROV" runat="server" Font-Size="14px" CssClass="form-control" Width="480px"></asp:TextBox>
+                                            <asp:TextBox ID="TXTDIR_PROV" runat="server" Font-Size="14px" CssClass="form-control" Style="text-transform: uppercase" Width="530"></asp:TextBox>
                                         </td>
                                         
                                     </tr>
@@ -1113,7 +1127,7 @@
                                         <td style="padding-left:25px;">
                                             <asp:UpdatePanel runat="server" ID="UpdatePanel8" UpdateMode="Conditional">
                                                 <ContentTemplate>
-                                                    <asp:TextBox ID="TXTRUC_DNI_PROV" runat="server" Font-Size="14px" CssClass="form-control" Width="220" Height="35"></asp:TextBox>
+                                                    <asp:TextBox ID="TXTRUC_DNI_PROV" runat="server" Font-Size="14px" CssClass="form-control" MaxLength="11" Width="220" Height="35" onkeydown="return jsDecimals(event);" ></asp:TextBox>
                                                     </ContentTemplate>
                                             </asp:UpdatePanel>
                                             
@@ -1122,7 +1136,7 @@
                                             <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="TELEFONO:"></asp:Label>
                                         </td>
                                         <td style="padding-left:20px;">
-                                            <asp:TextBox ID="TXTTELEFONOPROV" runat="server" Font-Size="14px" Style="text-transform: uppercase" CssClass="form-control" ></asp:TextBox>
+                                            <asp:TextBox ID="TXTTELEFONOPROV" runat="server" Font-Size="14px" Style="text-transform: uppercase" CssClass="form-control" onkeydown="return jsDecimals(event);" ></asp:TextBox>
                                         </td>
                                     </tr>
                                      <tr style="height: 40px">
@@ -1130,7 +1144,7 @@
                                             <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="MOVIL:"></asp:Label>
                                         </td>
                                         <td style="padding-left:25px;">
-                                            <asp:TextBox ID="TVTMOVILPRO" runat="server" Font-Size="14px" CssClass="form-control" Width="220"></asp:TextBox>
+                                            <asp:TextBox ID="TVTMOVILPRO" runat="server" Font-Size="14px" CssClass="form-control"  Width="220" onkeydown="return jsDecimals(event);" ></asp:TextBox>
                                         </td>
                                         <td style="padding-left:10px;">
                                             <asp:Label ID="Label4" runat="server" CssClass="lbl" Text="F. NACI:"></asp:Label>
@@ -1144,38 +1158,54 @@
                                             <asp:Label ID="Label7" runat="server" CssClass="lbl" Text="EMAIL:"></asp:Label>
                                         </td>
                                         <td style="padding-left:25px;">
-                                            <asp:TextBox ID="TextBox1" runat="server" Font-Size="14px" CssClass="form-control" Width="220"></asp:TextBox>
+                                            <asp:TextBox ID="TXTEMAILPROV" TextMode="Email" runat="server" Font-Size="14px" CssClass="form-control" Width="220"></asp:TextBox>
                                         </td>
                                         <td style="padding-left:10px;">
                                             <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="WEBSITE:"></asp:Label>
                                         </td>
                                         <td style="padding-left:20px;">
-                                            <asp:TextBox ID="TextBox2" TextMode="Date" runat="server" Font-Size="14px" Style="text-transform: uppercase" Height="35" CssClass="form-control" Width="220"></asp:TextBox>
+                                            <asp:TextBox ID="TXTWEBSITEPROV" TextMode="Url" runat="server" Font-Size="14px" Style="text-transform: uppercase" Height="35" CssClass="form-control" Width="220"></asp:TextBox>
                                         </td>
                                     </tr>
                                     </table>
                                 <table>
                                     <tr style="height: 40px">
                                         <td style="padding-right:0px;" >
-                                            <asp:DropDownList runat="server" ID="DropDownList1" CssClass="form-control" AutoPostBack="false" Width="100">
+                                            <asp:Label ID="Label9" runat="server" CssClass="lbl" Text="PAIS:"></asp:Label>
+                                        </td>
+                                        <td style="padding-left:25px;">
+                                            <asp:Label ID="Label10" runat="server" CssClass="lbl" Text="DEPARTAMENTO:"></asp:Label>
+                                        </td>
+                                        
+                                        <td style="padding-left:25px;">
+                                            <asp:Label ID="Label11" runat="server" CssClass="lbl" Text="PROVINCIA:"></asp:Label>
+                                        </td>
+                                        
+                                        <td style="padding-left:25px;">
+                                           <asp:Label ID="Label12" runat="server" CssClass="lbl" Text="DISTRITO:"></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 40px">
+                                        <td style="padding-right:0px;" >
+                                            <asp:DropDownList runat="server" ID="CBOPAIS" CssClass="form-control" AutoPostBack="true" Width="130" OnSelectedIndexChanged="CBOPAIS_SelectedIndexChanged">
                                                 <asp:ListItem Text="-PAIS-" Value="OTRO" />
                                             </asp:DropDownList>
                                         </td>
                                         <td style="padding-left:25px;">
-                                            <asp:DropDownList runat="server" ID="DropDownList2" CssClass="form-control" AutoPostBack="false" Width="150">
-                                                <asp:ListItem Text="-REGION-" Value="OTRO" />
+                                            <asp:DropDownList runat="server" ID="CBODEPARTAMENTO" CssClass="form-control" AutoPostBack="true" Width="150" OnSelectedIndexChanged="CBODEPARTAMENTO_SelectedIndexChanged">
+                                                <asp:ListItem Text="--SELECCIONAR--" Value="OTRO" />
                                             </asp:DropDownList>
                                         </td>
                                         
                                         <td style="padding-left:25px;">
-                                            <asp:DropDownList runat="server" ID="DropDownList3" CssClass="form-control" AutoPostBack="false" Width="180">
-                                                <asp:ListItem Text="-PROVINCIA-" Value="OTRO" />
+                                            <asp:DropDownList runat="server" ID="CBOPROVINCIA" CssClass="form-control" AutoPostBack="true" Width="150" OnSelectedIndexChanged="CBOPROVINCIA_SelectedIndexChanged">
+                                                <asp:ListItem Text="--SELECCIONAR--" Value="OTRO" />
                                             </asp:DropDownList>
                                         </td>
                                         
                                         <td style="padding-left:25px;">
-                                           <asp:DropDownList runat="server" ID="DropDownList4" CssClass="form-control" AutoPostBack="false" Width="150">
-                                                <asp:ListItem Text="-DISTRITO-" Value="OTRO" />
+                                           <asp:DropDownList runat="server" ID="CBODISTRITO" CssClass="form-control" AutoPostBack="true" Width="150" OnSelectedIndexChanged="CBODISTRITO_SelectedIndexChanged">
+                                                <asp:ListItem Text="--SELECCIONAR--" Value="OTRO" />
                                             </asp:DropDownList>
                                         </td>
                                     </tr>
@@ -1204,7 +1234,12 @@
                         </asp:Panel>
                     </ContentTemplate>
                     <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="CBOPAIS" EventName="SelectedIndexChanged"/>
+                        <asp:AsyncPostBackTrigger ControlID="CBODEPARTAMENTO" EventName="SelectedIndexChanged"/>
+                        <asp:AsyncPostBackTrigger ControlID="CBOPROVINCIA" EventName="SelectedIndexChanged"/>
+                        <asp:AsyncPostBackTrigger ControlID="CBODISTRITO" EventName="SelectedIndexChanged"/>
                         <asp:AsyncPostBackTrigger ControlID="CBOTIPOPROV" EventName="SelectedIndexChanged"/>
+                        <asp:AsyncPostBackTrigger ControlID="CBONACIOPROV" EventName="SelectedIndexChanged"/>
                         <asp:AsyncPostBackTrigger ControlID="BTNGRABARPROV"  EventName="Click"/>
                         <asp:AsyncPostBackTrigger ControlID="BTNCANCELARPROV" EventName="Click"/>
                     </Triggers>
@@ -1223,20 +1258,36 @@
     <asp:UpdatePanel runat="server" ID="UPDGRILLA">
         <ContentTemplate>
 
-            <div class="container-fluid col-lg-12 col-md-12" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #F5F3EE; top: 0px;">
+            <div class="container-fluid col-lg-12 col-md-12" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  top: 0px;">
 
                 <div class="form-inline">
                     <div class="form-group">
-                        <asp:TextBox runat="server" ID="LBLCHEQUERA2" BorderStyle="None" Width="180" BackColor="#F5F3EE" Height="25" AutoPostBack="true" Font-Size="Smaller" ForeColor="Green" />
+                        <asp:Label runat="server" ID="LBLCHEQUERA21" CssClass="label" BorderStyle="None" Width="180" BackColor="Black" Height="25" AutoPostBack="true" Font-Size="Smaller" ForeColor="White" />
                     </div>
                     <div class="form-group">
-                        <asp:TextBox runat="server" ID="LBLRANGOINI" BorderStyle="None" BackColor="#F5F3EE" Height="25" AutoPostBack="true" Font-Size="Smaller" ForeColor="Green" />
+                        <asp:Label runat="server" ID="LBLRANGOINI2" CssClass="label label-danger" BorderStyle="None" BackColor="Black" Height="25" AutoPostBack="true" Font-Size="Smaller" ForeColor="White" />
                     </div>
                     <div class="form-group">
-                        <asp:TextBox runat="server" ID="LBLRANGOFIN" BorderStyle="None" BackColor="#F5F3EE" Height="25" AutoPostBack="true" Font-Size="Smaller" ForeColor="Green" />
+                        <asp:Label runat="server" ID="LBLRANGOFIN2" CssClass="label label-danger" BorderStyle="None" BackColor="Black" Height="25" AutoPostBack="true" Font-Size="Smaller" ForeColor="White" />
                     </div>
                     <div class="form-group">
-                        <asp:TextBox runat="server" ID="txtBUSQUEDA" CssClass="form-control" placeholder="Busqueda de cheques" Width="230"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtBUSQUEDA" CssClass="form-control" placeholder="Busqueda rápida " Width="150"></asp:TextBox>
+
+                    </div>
+                    <div class="form-group">
+                        <asp:TextBox runat="server" TextMode="Date" ID="TXTFECHAINI" Height="35" CssClass="form-control" placeholder="" Width="150"></asp:TextBox>
+
+                    </div>
+                    <div class="form-group">
+                        <asp:TextBox runat="server" TextMode="Date" ID="TXTFECHAFIN" Height="35" CssClass="form-control" placeholder="" Width="150"></asp:TextBox>
+
+                    </div>
+                    <div class="form-group">
+                        <asp:TextBox runat="server" ID="TXTDECIMIN" CssClass="form-control" placeholder="Importe Minimo" Width="150"></asp:TextBox>
+
+                    </div>
+                    <div class="form-group">
+                        <asp:TextBox runat="server" ID="TXTDECIMAX" CssClass="form-control" placeholder="Importe Maximo" Width="150"></asp:TextBox>
 
                     </div>
                     <div class="form-group">

@@ -16,14 +16,14 @@ namespace APLICACION_GALERIA.REPORTES {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CHEQUES_PRUEBA : ReportClass {
+    public class CHEQUE_BBVA_DIFERIDO : ReportClass {
         
-        public CHEQUES_PRUEBA() {
+        public CHEQUE_BBVA_DIFERIDO() {
         }
         
         public override string ResourceName {
             get {
-                return "CHEQUES_PRUEBA.rpt";
+                return "CHEQUE_BBVA_DIFERIDO.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace APLICACION_GALERIA.REPORTES {
         
         public override string FullResourceName {
             get {
-                return "APLICACION_GALERIA.REPORTES.CHEQUES_PRUEBA.rpt";
+                return "APLICACION_GALERIA.REPORTES.CHEQUE_BBVA_DIFERIDO.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace APLICACION_GALERIA.REPORTES {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCHEQUES_PRUEBA : Component, ICachedReport {
+    public class CachedCHEQUE_BBVA_DIFERIDO : Component, ICachedReport {
         
-        public CachedCHEQUES_PRUEBA() {
+        public CachedCHEQUE_BBVA_DIFERIDO() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace APLICACION_GALERIA.REPORTES {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CHEQUES_PRUEBA rpt = new CHEQUES_PRUEBA();
+            CHEQUE_BBVA_DIFERIDO rpt = new CHEQUE_BBVA_DIFERIDO();
             rpt.Site = this.Site;
             return rpt;
         }
