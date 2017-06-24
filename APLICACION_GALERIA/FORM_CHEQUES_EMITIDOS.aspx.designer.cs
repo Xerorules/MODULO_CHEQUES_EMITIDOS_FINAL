@@ -958,6 +958,15 @@ namespace APLICACION_GALERIA {
         protected global::System.Web.UI.WebControls.TextBox TXTDECIMAX;
         
         /// <summary>
+        /// Control chkMOSTRAR_TODOS.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkMOSTRAR_TODOS;
+        
+        /// <summary>
         /// Control btnMOSTRARTODOS.
         /// </summary>
         /// <remarks>

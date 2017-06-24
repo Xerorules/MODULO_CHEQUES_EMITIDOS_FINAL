@@ -59,16 +59,16 @@ namespace APLICACION_GALERIA
                 TXTCUENTA2.Text = "";
 
                 Master.label.Text = "EMISION DE CHEQUES";// seteamos el valor
-                //if ()
-                //{
-                //    Master.label.Text = "EMISION DE CHEQUES";
-                //}
-                //HACER QUE CAMBIE EL LABEL DEL MASTER PAGE
-                
                 Response.Write(Master.label.Text);
+
+                Master.label2.Text = " - " + Session["NOM_EMPRESA"].ToString();
+                Response.Write(Master.label2.Text);
+
                 TXTCUENTA2.Focus();
                 inhabilitar();
-                
+                TXTFECHAINI.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                TXTFECHAFIN.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                TXTFECHAPROV.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 TXTFGIRO.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 TXTFCOBRO.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 Session["VARIABLE_ACTUALIZAR"] = "";
@@ -455,13 +455,15 @@ namespace APLICACION_GALERIA
                                 
                 LBLCHEQUERA21.Text = "CHEQUERA SELECCIONADA";
                 
-                LBLCHEQUERA21.ForeColor = System.Drawing.Color.Green;
+                LBLCHEQUERA21.ForeColor = System.Drawing.Color.Gold;
                 txtIDCHEQUERA.Text = dgvDATOS.Rows[0].Cells[1].Text;
                 Session["ID_CHEQUERA"] = dgvDATOS.Rows[0].Cells[1].Text;
                 TXTNUMERO.Text = dgvDATOS.Rows[0].Cells[2].Text;
                 llenar_datos();
                 
                 //CARGAR LBL DE TOTALES GIRADOS
+
+
                 
                 Button2.Enabled = true;
                 
@@ -471,8 +473,8 @@ namespace APLICACION_GALERIA
                     if (Session["ID_CHEQUERA"].ToString() != "" || Session["ID_CHEQUERA"].ToString() != null)
                     {
                         DataTable dt1 = OBJVENTA.NLISTAR_INI_FIN(Session["ID_CHEQUERA"].ToString());
-                        LBLRANGOINI2.Text = "N° DE INICIO: " + dt1.Rows[0][0].ToString();
-                        LBLRANGOFIN2.Text = "N° DE FIN: " + dt1.Rows[0][1].ToString();
+                        LBLRANGOINI2.Text =  dt1.Rows[0][0].ToString();
+                        LBLRANGOFIN2.Text = dt1.Rows[0][1].ToString();
                     }
                     else
                     {
@@ -509,17 +511,17 @@ namespace APLICACION_GALERIA
             LBLBANCOCTA.Text = dt.Rows[0][1].ToString();
             if (mone == "S")
             {
-                //LBLMONEDA.Text = "SOLES";
+                
                 LBLSALDOCONT.Text = "S/." + Convert.ToDecimal(dt.Rows[0][2].ToString()).ToString("#,###0.00");
                 LBLSALDODIP.Text = "S/." + Convert.ToDecimal(dt.Rows[0][3].ToString()).ToString("#,###0.00");
-                LBLTOTALGIRADO.Text = "S/." + Convert.ToDecimal(dt.Rows[0][4].ToString()).ToString("#,###0.00");
+                //LBLTOTALGIRADO.Text = "S/." + Convert.ToDecimal(dt.Rows[0][4].ToString()).ToString("#,###0.00");
             }
             else if (mone == "D")
             {
-                //LBLMONEDA.Text = "DOLAR";
+                
                 LBLSALDOCONT.Text = "$  " + Convert.ToDecimal(dt.Rows[0][2].ToString()).ToString("#,###0.00");
                 LBLSALDODIP.Text = "$  " + Convert.ToDecimal(dt.Rows[0][3].ToString()).ToString("#,###0.00");
-                LBLTOTALGIRADO.Text = "$" + Convert.ToDecimal(dt.Rows[0][4].ToString()).ToString("#,###0.00");
+                //LBLTOTALGIRADO.Text = "$" + Convert.ToDecimal(dt.Rows[0][4].ToString()).ToString("#,###0.00");
             }
 
             //LBLNCUENTA.Text = dt.Rows[0][4].ToString();
@@ -1913,6 +1915,12 @@ namespace APLICACION_GALERIA
                 CBODISTRITO.Enabled = false;
             }
             mp3.Show();
+        }
+
+        protected void chkMOSTRAR_TODOS_CheckedChanged(object sender, EventArgs e)
+        {
+            LBLCHEQUERA21.Text = "MODO CONSULTA";
+            LBLCHEQUERA21.ForeColor = System.Drawing.Color.Gold;
         }
     }
 }

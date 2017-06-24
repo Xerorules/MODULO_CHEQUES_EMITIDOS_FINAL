@@ -47,11 +47,17 @@ namespace APLICACION_GALERIA
                 if (dt.Rows[0][0].ToString() == CBOEMPRESA.SelectedValue.ToString() && dt.Rows[0][1].ToString() != "" && dt.Rows[0][2].ToString() != "")
                 {
                     Session["ID_EMPRESA"] = CBOEMPRESA.SelectedValue;
+                    string nomempresa = CBOEMPRESA.SelectedItem.ToString();
+                    Session["NOM_EMPRESA"] = nomempresa;
                     Session["ID_EMPLEADO"] = dt.Rows[0][1].ToString();
                     Session["USUARIO"] = dt.Rows[0][2].ToString();
                     ESTRUCTURA_GRILLA_DOCS();
                     ESTRUCTURA_GRILLA_MOVIS();
                     ESTRUCTURA_GRILLA_DOCS2();
+
+                    Master.label2.Text = " - " + Session["NOM_EMPRESA"].ToString();
+                    Response.Write(Master.label2.Text);
+
                     Response.Redirect("FORM_CHEQUERAS.aspx");
                     Server.Transfer("FORM_CHEQUERAS.aspx", true);
                 }

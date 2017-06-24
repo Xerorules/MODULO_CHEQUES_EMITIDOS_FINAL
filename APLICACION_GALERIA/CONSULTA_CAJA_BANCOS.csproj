@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\bootstrap.css" />
+    <Content Include="css\css_tab_panel_csspuro.css" />
     <Content Include="css\font-awesome.css" />
     <Content Include="css\main.css" />
     <Content Include="FormConsultarObservacion.aspx" />

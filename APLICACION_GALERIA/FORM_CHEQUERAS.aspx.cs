@@ -38,6 +38,9 @@ namespace APLICACION_GALERIA
                 Master.label.Text = "CHEQUERAS"; // seteamos el valor
                 Response.Write(Master.label.Text);
 
+                Master.label2.Text = " - " + Session["NOM_EMPRESA"].ToString();
+                Response.Write(Master.label2.Text);
+
                 TXTFECHAEMISION.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 TXTFECHAVCTO.Text = DateTime.Now.ToString("yyyy-MM-dd");
 

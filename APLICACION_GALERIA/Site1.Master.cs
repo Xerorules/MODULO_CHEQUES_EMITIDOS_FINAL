@@ -22,6 +22,12 @@ namespace APLICACION_GALERIA
             set { lblTITULO = value; }
         }
 
+        public Label label2
+        {
+            get { return lblEMPRESA; }
+            set { lblEMPRESA = value; }
+        }
+
         void bloquear_controles()
         {
 
