@@ -68,10 +68,13 @@
   <ItemGroup>
     <Content Include="css\bootstrap.css" />
     <Content Include="css\css_tab_panel_csspuro.css" />
+    <Content Include="css\estylos.css" />
     <Content Include="css\font-awesome.css" />
     <Content Include="css\main.css" />
+    <Content Include="css\paginador.css" />
     <Content Include="FormConsultarObservacion.aspx" />
     <Content Include="FormConsultaVentas.aspx" />
+    <Content Include="ICONOS\add-user %281%29.png" />
     <Content Include="REPORTES\RPT_CHEQUE_DIFERIDO.aspx" />
     <Content Include="FORM_CHEQUES_EMITIDOS.aspx" />
     <Content Include="ICONOS\AUMENTAR.png" />
@@ -196,6 +199,10 @@
     <Folder Include="fonts\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CAPA_DATOS\CAPA_DATOS.csproj">
+      <Project>{01c9338d-76a0-42b6-9639-3370cd02dfda}</Project>
+      <Name>CAPA_DATOS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CAPA_ENTIDAD\CAPA_ENTIDAD.csproj">
       <Project>{b2007cb9-df2b-4521-9c02-f1813d91d4e9}</Project>
       <Name>CAPA_ENTIDAD</Name>

@@ -22,33 +22,6 @@ namespace APLICACION_GALERIA {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// Control txtPROO.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPROO;
-        
-        /// <summary>
-        /// Control txtIDCHEQUERA.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIDCHEQUERA;
-        
-        /// <summary>
-        /// Control txtID_CUENTA.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtID_CUENTA;
-        
-        /// <summary>
         /// Control TXTCUENTA2.
         /// </summary>
         /// <remarks>
@@ -112,15 +85,6 @@ namespace APLICACION_GALERIA {
         protected global::System.Web.UI.WebControls.Label LBLSALDODIP;
         
         /// <summary>
-        /// Control LBLTOTALGIRADO.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LBLTOTALGIRADO;
-        
-        /// <summary>
         /// Control upd3.
         /// </summary>
         /// <remarks>
@@ -139,13 +103,13 @@ namespace APLICACION_GALERIA {
         protected global::System.Web.UI.WebControls.TextBox TXTPROOVEEDOR;
         
         /// <summary>
-        /// Control BTNNUEVOPROVEE.
+        /// Control BTNNUEVOPROVEE2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BTNNUEVOPROVEE;
+        protected global::System.Web.UI.WebControls.ImageButton BTNNUEVOPROVEE2;
         
         /// <summary>
         /// Control lblmensajeproveedor.
@@ -913,6 +877,15 @@ namespace APLICACION_GALERIA {
         protected global::System.Web.UI.WebControls.Label LBLRANGOFIN2;
         
         /// <summary>
+        /// Control LBLTOTALGIRADO.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBLTOTALGIRADO;
+        
+        /// <summary>
         /// Control txtBUSQUEDA.
         /// </summary>
         /// <remarks>
@@ -983,6 +956,33 @@ namespace APLICACION_GALERIA {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvBANCOS;
+        
+        /// <summary>
+        /// Control txtID_CUENTA.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtID_CUENTA;
+        
+        /// <summary>
+        /// Control txtPROO.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPROO;
+        
+        /// <summary>
+        /// Control txtIDCHEQUERA.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIDCHEQUERA;
         
         /// <summary>
         /// Control hfCurrentRowIndex.

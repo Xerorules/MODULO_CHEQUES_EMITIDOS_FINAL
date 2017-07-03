@@ -7,6 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="css/font-awesome.css" rel="stylesheet" />
     <link href="css/css_tab_panel_csspuro.css" rel="stylesheet" />
+    <link href="css/paginador.css" rel="stylesheet" />
     <script type="text/javascript">
 
         function openModalForm() {
@@ -37,30 +38,46 @@
             $('#myModalFECHA').modal('show');
         }
 
+        function openModalMAX() {
+            $('#myModalMAX').modal('show');
+        }
+
+        function openModal4() {
+            $('#myModal4').modal('show');
+        }
+
+
     </script>
 
     <script type='text/javascript'>
 
         function check() {
+            document.getElementById('tabbed2').checked = true;
+        }
 
-           
-            if (document.getElementById('tabbed1').checked = true)
-            {
-                document.getElementById('tabbed2').checked = true;
-            }
+        function check2() {
+            document.getElementById('tabbed1').checked = true;
+        }
 
-            if (document.getElementById('tabbed2').checked = false)
-            {
-                document.getElementById('tabbed1').checked = true;
-            }
-                
-            
+
+        function limpiarcuenta() {
+            document.getElementById("<%= TXTCUENTA2.ClientID %>").value = "";
+
+            var txtcuentavar = document.getElementById("<%= TXTCUENTA2.ClientID %>");
+            txtcuentavar.disabled = true;
 
         }
 
-   </script>
+        function reactivarcuenta() {
+            var txtcuentavar = document.getElementById("<%= TXTCUENTA2.ClientID %>");
+             txtcuentavar.disabled = false;
 
-    
+         }
+
+
+    </script>
+
+
 
     <script type="text/javascript">
         //funcion solo decimales
@@ -424,24 +441,19 @@
         <%--<h2 style="color: black; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" class="">EMISION DE CHEQUES</h2>--%>
         &nbsp
     </div>
-    <div class="visible-xs">
-        <asp:TextBox ID="txtPROO" runat="server" BorderStyle="None" AutoPostBack="true" ForeColor="White" Height="1"></asp:TextBox>
-        <asp:TextBox ID="txtIDCHEQUERA" runat="server" BorderStyle="None" AutoPostBack="true" ForeColor="White" Height="1"></asp:TextBox>
-        <asp:TextBox ID="txtID_CUENTA" runat="server" BorderStyle="None" ForeColor="White" Height="1" AutoPostBack="true" OnTextChanged="txtID_CUENTA_TextChanged"></asp:TextBox>
-    </div>
 
 
     <div class="container-fluid col-lg-12 col-md-12" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; top: 0px;">
         <div class="form-horizontal" style="position: relative; margin-top: 0px;">
 
-            <div class="container col-lg-12 col-md-12" style="color: black; border-radius: 5px 5px 5px 5px; font-size: 12px; margin-top: -20px;">
+            <div class="container col-lg-12 col-md-12" style="color: black; border-radius: 5px 5px 5px 5px; font-size: 12px; margin-top: 0px;">
                 <div class="form-inline">
-                    <div class="input-group col-md-5" style="height: 34px; z-index: 1; float: left; margin-left: -20px;">
+                    <div class="input-group col-md-5" style="height: 34px; z-index: 1; float: left; margin-left: -10px;">
 
                         <asp:TextBox runat="server" ID="TXTCUENTA2" CssClass="form-control" placeholder="Busqueda de cuentas" Style="text-transform: uppercase"></asp:TextBox>
 
                         <span class="input-group-btn">
-                            <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
+                            <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Always">
                                 <ContentTemplate>
 
                                     <asp:Button runat="server" ID="BTNCHEQUERA" CssClass="btn btn-info" Text="..." Height="34" ToolTip="Seleccionar Chequera" OnClick="BTNCHEQUERA_Click" />
@@ -484,14 +496,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-xs-6 col-md-3" style="left: 70px;">
-
-                                    <label class="control-label col-md-2" style="color: black; left: -5px;">T.GIRADO:</label>
-
-                                    <div class="col-xs-6 col-md-12" style="margin-top: 10px; left: 10px;">
-                                        <asp:Label runat="server" ID="LBLTOTALGIRADO" CssClass="label" Text="-" Font-Size="Small" BackColor="Black"></asp:Label>
-                                    </div>
-                                </div>
                             </ContentTemplate>
 
                         </asp:UpdatePanel>
@@ -504,14 +508,14 @@
             </div>
 
             <div>&nbsp;</div>
-            <div class="col-md-12" style="top: -20px;">
+            <div class="col-md-12" style="top: -40px;">
                 <div class="tabbed">
 
                     <input name="tabbed" id="tabbed1" type="radio" checked="checked" />
                     <section>
-                        <h1>
+                        <%-- <h1>
                             <label for="tabbed1">REGISTRO MANUAL</label>
-                        </h1>
+                        </h1>--%>
                         <div style="background-color: lightgray; height: 160px; font-size: 11px;">
 
 
@@ -521,13 +525,15 @@
                                     <div class="form-horizontal col-xs-12 col-md-3 col-lg-3" style="position: relative;">
                                         <div class="form-group">
 
-                                            <div id="provee" class="input-group" style="height: 35px; z-index: 1;">
+                                            
 
-                                                <asp:TextBox runat="server" ID="TXTPROOVEEDOR" CssClass="form-control" placeholder="Busqueda de proveedores" MaxLength="999"></asp:TextBox>
-                                                <span class="input-group-btn">
-                                                    <asp:Button ID="BTNNUEVOPROVEE" runat="server" CssClass="btn btn-warning" ForeColor="Black" Text="..." Height="34" OnClick="BTNNUEVOPROVEE_Click" />
-                                                </span>
-                                            </div>
+                                                <asp:TextBox runat="server" ID="TXTPROOVEEDOR" CssClass="form-control col-md-10" placeholder="Busqueda de proveedores" MaxLength="999"></asp:TextBox>
+                                                <div style="float:right;">
+                                                    <asp:ImageButton ID="BTNNUEVOPROVEE2" runat="server"  ImageAlign="Middle" Text="IR" ForeColor="Black" ImageUrl="~/ICONOS/add-user (1).png" Height="34" OnClick="BTNNUEVOPROVEE2_Click" />
+                                                
+                                                </div>
+                                                
+                                          
 
                                             <div id="test" class="list fade-out" style="text-align: center;">
                                                 <asp:Label runat="server" ID="lblmensajeproveedor" ForeColor="Red" Text="(*)Debe seleccionar el Proveedor" Visible="false"></asp:Label>
@@ -688,8 +694,12 @@
 
                                     <div class="form-horizontal col-xs-12 col-md-2 col-lg-2" style="position: relative;">
                                         <div class="form-group">
-                                            <asp:Button runat="server" Height="0" Width="0" ID="Button2" CssClass="visible-xs" AccessKey="N" OnClick="Button2_Click" />
 
+                                            <div class="col-md-12 col-sm-12">
+                                                <asp:Button runat="server" CssClass="btn btn-info col-xs-12" ForeColor="White" ID="Button2" Font-Bold="true" Text="NUEVO" AccessKey="N" OnClick="Button2_Click" />
+
+                                            </div>
+                                            <div>&nbsp;</div>
                                             <div class="col-md-12 col-sm-12">
                                                 <asp:Button runat="server" CssClass="btn btn-info col-xs-12" ForeColor="White" Font-Bold="true" Text="GRABAR" ValidationGroup="Registro" ID="btnRegistrar" AccessKey="G" OnClick="btnRegistrar_Click" />
 
@@ -711,12 +721,11 @@
                     </section>
                     <input name="tabbed" id="tabbed2" type="radio" />
                     <section>
-                        <h1>
+                        <%-- <h1>
                             <label for="tabbed2">
-                                &nabla;
+                              
                             </label>
-                        </h1>
-
+                        </h1>--%>
                     </section>
                 </div>
             </div>
@@ -746,6 +755,26 @@
         </div>
     </div>
     <!-- -----------------------------Modal Registro-------------------------------------------------------------->
+    <!-- -----------------------------Modal MAX-------------------------------------------------------------->
+    <div class="modal fade" id="myModalMAX" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <img src="ICONOS/LOGO_GRUPO_DIONYS.png" width="75" height="35" />
+                    <h3 class="modal-title bg-color-green" id="myModalLabelMAX" style="text-align: center">"GRUPO DIONYS"</h3>
+
+                </div>
+                <div class="modal-body">
+                    <h3 class="success" style="text-align: center; font-family: 'Segoe UI';">&nbsp Se acabaron los cheques!, use otra chequera</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -----------------------------Modal MAX-------------------------------------------------------------->
     <!-- -----------------------------Modal Registro-------------------------------------------------------------->
     <div class="modal fade" id="myModalFECHA" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -892,8 +921,8 @@
 
 
                                     <div class="col-sm-12">
-                                        <div class="col-sm-6 col-xs-10">
-                                            <asp:Label runat="server" CssClass="success">CHEQUERAS CLASICAS</asp:Label>
+                                        <div class="col-sm-12 col-xs-10">
+                                            <asp:Label runat="server" CssClass="success" ForeColor="Blue">CHEQUERAS CLASICAS</asp:Label>
                                             <div style="width: 100%; height: 100px; overflow-y: scroll;">
                                                 <asp:GridView ID="dgvCHEQUERA_CLAS" runat="server" AutoGenerateColumns="true" Font-Size="Small" CssClass="table table-bordered table-condensed table-responsive"
                                                     OnRowCommand="dgvCHEQUERA_CLAS_RowCommand">
@@ -911,8 +940,9 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-sm-6 col-xs-10">
-                                            <asp:Label runat="server" CssClass="success">CHEQUERAS PAGO DIFERIDO</asp:Label>
+                                        <div>&nbsp;</div>
+                                        <div class="col-sm-12 col-xs-10">
+                                            <asp:Label runat="server" CssClass="success" ForeColor="Blue">CHEQUERAS PAGO DIFERIDO</asp:Label>
                                             <div style="width: 100%; height: 100px; overflow-y: scroll;">
                                                 <asp:GridView ID="dgvCHEQUERA_DIFE" runat="server" AutoGenerateColumns="true" Font-Size="Small" CssClass="table table-bordered table-condensed table-responsive"
                                                     OnRowCommand="dgvCHEQUERA_DIFE_RowCommand">
@@ -932,7 +962,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-12 col-xs-12">
+                                    <div class="visible-xs">
                                         <hr />
                                         <asp:Label runat="server" CssClass="success">CHEQUERA SELECCIONADA</asp:Label>
                                         <asp:GridView ID="dgvDATOS" runat="server" AutoGenerateColumns="true" Font-Size="Small" CssClass="table table-bordered table-condensed table-responsive"
@@ -958,10 +988,10 @@
 
                                         <div class="form-group col-lg-12 col-md-12 col-xs-12">
 
-                                            <div class="col-lg-6 col-md-6 col-xs-12">
+                                            <div class="visible-xs">
                                                 <asp:Button ID="btnAceptarPopUp" runat="server" Text="ACEPTAR" Width="120px" CssClass="form-control btn btn-info" OnClick="btnAceptarPopUp_Click" />
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-xs-12">
+                                            <div class="col-lg-12 col-md-6 col-xs-12">
                                                 <asp:Button ID="btnSalirPopUp" runat="server" Text="SALIR" Width="120px" CssClass="form-control btn btn-info" OnClick="btnSalirPopUp_Click" />
                                             </div>
                                         </div>
@@ -1300,7 +1330,7 @@
         <asp:UpdatePanel runat="server" ID="UPDGRILLA">
             <ContentTemplate>
 
-                <div class="container-fluid col-lg-12 col-md-12" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; top: 0px;">
+                <div class="container-fluid col-lg-12 col-md-12" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; top: -20px;">
 
                     <div class="form-inline">
 
@@ -1309,7 +1339,7 @@
 
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" style="width:110px;">
                             <div class="col-md-6">
 
                                 <label style="color: black;">INI:</label>
@@ -1322,7 +1352,7 @@
 
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" style="width:110px;">
                             <div class="col-md-6">
 
                                 <label style="color: black;">FIN:</label>
@@ -1334,38 +1364,57 @@
                             </div>
 
                         </div>
+
                         <div class="form-group">
-                            <asp:TextBox runat="server" ID="txtBUSQUEDA" CssClass="form-control" placeholder="Busqueda rápida " Width="150"></asp:TextBox>
+                            <div class="col-md-6">
+
+                                <label style="color: black;">TOTAL:</label>
+
+                            </div>
+                            <div class="col-md-6" style="top: 5px; left: -20px;">
+                                <asp:Label runat="server" ID="LBLTOTALGIRADO" CssClass="label" Text="-" Font-Size="Small" BackColor="Black"></asp:Label>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <asp:TextBox runat="server" ID="txtBUSQUEDA" CssClass="form-control" placeholder="Busqueda rápida " Width="120"></asp:TextBox>
 
                         </div>
                         <div class="form-group">
-                            <asp:TextBox runat="server" TextMode="Date" ID="TXTFECHAINI" Height="35" CssClass="form-control" placeholder="" Width="150"></asp:TextBox>
+                            <label style="color: black;">F.INI:</label>
+                            <asp:TextBox runat="server" TextMode="Date" ID="TXTFECHAINI" Height="35" CssClass="form-control" placeholder="" Width="160" Font-Size="Small"></asp:TextBox>
 
                         </div>
                         <div class="form-group">
-                            <asp:TextBox runat="server" TextMode="Date" ID="TXTFECHAFIN" Height="35" CssClass="form-control" placeholder="" Width="150"></asp:TextBox>
+                            <label style="color: black;">F.FIN:</label>
+                            <asp:TextBox runat="server" TextMode="Date" ID="TXTFECHAFIN" Height="35" CssClass="form-control" placeholder="" Width="160" Font-Size="Small"></asp:TextBox>
 
                         </div>
                         <div class="form-group">
-                            <asp:TextBox runat="server" ID="TXTDECIMIN" CssClass="form-control" placeholder="Importe Minimo" Width="100" onkeydown="return jsDecimals(event);"></asp:TextBox>
+                            <label style="color: black;">RANGO:</label>
+                            <asp:TextBox runat="server" ID="TXTDECIMIN" CssClass="form-control" placeholder="Minimo" Width="80" onkeydown="return jsDecimals(event);"></asp:TextBox>
 
                         </div>
                         <div class="form-group">
-                            <asp:TextBox runat="server" ID="TXTDECIMAX" CssClass="form-control" placeholder="Importe Maximo" Width="100" onkeydown="return jsDecimals(event);"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="TXTDECIMAX" CssClass="form-control" placeholder="Maximo" Width="80" onkeydown="return jsDecimals(event);"></asp:TextBox>
 
                         </div>
                         <div class="form-group">
 
-                            <asp:CheckBox runat="server" name="aspcheck1" ID="chkMOSTRAR_TODOS" CssClass="checkbox" AutoPostBack="true" Text="TODOS" Font-Size="Small" OnClick="return check();" OnCheckedChanged="chkMOSTRAR_TODOS_CheckedChanged" />
+                            <asp:CheckBox runat="server" name="aspcheck1" ID="chkMOSTRAR_TODOS" CssClass="checkbox" AutoPostBack="true" Text="TODOS" Font-Size="Small" OnCheckedChanged="chkMOSTRAR_TODOS_CheckedChanged" />
                         </div>
                         <div class="form-group">
-                            <asp:Button ID="btnMOSTRARTODOS" runat="server" CssClass="btn btn-danger" Width="80" Text="BUSCAR" Height="35" OnClick="btnMOSTRARTODOS_Click" />
+                            <asp:Button ID="btnMOSTRARTODOS" runat="server" CssClass="btn btn-danger" Width="80" Text="OK" Height="34" OnClick="btnMOSTRARTODOS_Click" />
                         </div>
                     </div>
 
                     <div style="overflow-y: scroll;">
                         <asp:GridView ID="dgvBANCOS" runat="server" EnablePersistedSelection="true" OnSelectedIndexChanging="dgvBANCOS_SelectedIndexChanging" BackColor="White" Font-Names="Tahoma" AutoGenerateColumns="False" DataKeyNames="ID_CHEQUESEM" Font-Size="Small" CssClass="table table-bordered table-condensed table-responsive"
-                            HeaderStyle-BackColor="#3366ff" HeaderStyle-ForeColor="White" OnSelectedIndexChanged="dgvBANCOS_SelectedIndexChanged" OnRowDataBound="dgvBANCOS_RowDataBound" OnRowCommand="dgvBANCOS_RowCommand" OnRowCreated="dgvBANCOS_RowCreated">
+                            HeaderStyle-BackColor="#3366ff" HeaderStyle-ForeColor="White" OnSelectedIndexChanged="dgvBANCOS_SelectedIndexChanged" OnRowDataBound="dgvBANCOS_RowDataBound" OnRowCommand="dgvBANCOS_RowCommand" OnRowCreated="dgvBANCOS_RowCreated" AllowPaging="true" PageSize="15" OnPageIndexChanging="dgvBANCOS_PageIndexChanging">
+                            <PagerStyle CssClass="pagination-ys" HorizontalAlign="Center" />
                             <EmptyDataTemplate>
                                 No hay registros!
                             </EmptyDataTemplate>
@@ -1394,26 +1443,26 @@
                                 <asp:BoundField DataField="OBSERVACION" HeaderText="OBSERVACION" HeaderStyle-Font-Size="Smaller" ConvertEmptyStringToNull="true" />
                                 <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="50px">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="ACTUALIZAR" runat="server" CommandName="ACTUALIZAR" OnClientClick="return GetSelectedRow(this)" ImageAlign="Middle"
+                                        <asp:ImageButton ID="ACTUALIZAR" runat="server" CommandName="ACTUALIZAR" OnClientClick="return GetSelectedRow(this)" ToolTip="Amarrar Movimientos" ImageAlign="Middle"
                                             ImageUrl="~/ICONOS/refresh.png" Width="20px" Height="20px" Font-Size="Smaller" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="40px">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="EDITAR" runat="server" CommandName="EDITAR" OnClientClick="return GetSelectedRow(this)" ImageAlign="Middle" ImageUrl="~/ICONOS/writing.png"
+                                        <asp:ImageButton ID="EDITAR" runat="server" CommandName="EDITAR" OnClientClick="return GetSelectedRow(this)" ToolTip="Editar" ImageAlign="Middle" ImageUrl="~/ICONOS/writing.png"
                                             Width="20px" Height="20px" Font-Size="Smaller" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="40px">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="ELIMINAR" CommandName="ELIMINAR" runat="server" ImageAlign="Middle" ImageUrl="~/ICONOS/rubbish.png"
+                                        <asp:ImageButton ID="ELIMINAR" CommandName="ELIMINAR" runat="server" ImageAlign="Middle" ImageUrl="~/ICONOS/rubbish.png" ToolTip="Eliminar"
                                             OnClientClick="if (!confirm('Esta seguro de eliminar el registro?')) return false;" Width="20px" Height="20px" Style="cursor: pointer" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="IMG" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="40px">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="IMAGEN" CommandName="IMAGEN" runat="server" ImageAlign="Middle" ImageUrl="~/ICONOS/camera.png"
+                                        <asp:ImageButton ID="IMAGEN" CommandName="IMAGEN" runat="server" ImageAlign="Middle" ToolTip="Imagen" ImageUrl="~/ICONOS/camera.png"
                                             Width="20px" Height="20px" Style="cursor: pointer" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -1421,14 +1470,22 @@
                         </asp:GridView>
                     </div>
                 </div>
+                <asp:TextBox ID="txtID_CUENTA" runat="server" BorderStyle="None" ForeColor="White" Height="1" CssClass="visible-xs" AutoPostBack="true" OnTextChanged="txtID_CUENTA_TextChanged"></asp:TextBox>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="dgvBANCOS" EventName="SelectedIndexChanging" />
+                <asp:AsyncPostBackTrigger ControlID="chkMOSTRAR_TODOS" EventName="CheckedChanged" />
+
             </Triggers>
         </asp:UpdatePanel>
     </div>
 
+    <div class="visible-xs">
+        <asp:TextBox ID="txtPROO" runat="server" BorderStyle="None" AutoPostBack="true" ForeColor="White" Height="1"></asp:TextBox>
+        <asp:TextBox ID="txtIDCHEQUERA" runat="server" BorderStyle="None" AutoPostBack="true" ForeColor="White" Height="1"></asp:TextBox>
 
+
+    </div>
     <asp:HiddenField ID="hfCurrentRowIndex" runat="server"></asp:HiddenField>
     <asp:HiddenField ID="hfParentContainer" runat="server"></asp:HiddenField>
 

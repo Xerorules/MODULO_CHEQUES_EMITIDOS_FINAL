@@ -147,7 +147,7 @@ namespace CAPA_DATOS
             return dt;
         }
 
-        public string DREGISTRARCHEQUERAS(E_CHEQUES CH,string cond)
+        public string DREGISTRARCHEQUERAS(E_CHEQUES CH,string cond,string id_chequera)
         {
             string res = "";
             try
@@ -163,9 +163,10 @@ namespace CAPA_DATOS
                 cmd.Parameters.AddWithValue("@N_CORRELATIVO",CH.n_correlativo);
                 cmd.Parameters.AddWithValue("@TIPO", CH.tipo);
                 cmd.Parameters.AddWithValue("@ESTADO", CH.estado);
-                cmd.Parameters.AddWithValue("@OBS", CH.estado);
+                cmd.Parameters.AddWithValue("@OBS", CH.obs);
                 cmd.Parameters.AddWithValue("@USUARIO", CH.usuario);
-                cmd.Parameters.AddWithValue("@CONDICION", "2");
+                cmd.Parameters.AddWithValue("@CONDICION", cond);
+                cmd.Parameters.AddWithValue("@ID_CHEQUERA", id_chequera);
                 int a = cmd.ExecuteNonQuery();
                 if (a > 0)
                 {
@@ -326,9 +327,10 @@ namespace CAPA_DATOS
                 cmd.Parameters.AddWithValue("@N_CORRELATIVO", CH.n_correlativo);
                 cmd.Parameters.AddWithValue("@TIPO", CH.tipo);
                 cmd.Parameters.AddWithValue("@ESTADO", CH.estado);
-                cmd.Parameters.AddWithValue("@OBS", CH.estado);
+                cmd.Parameters.AddWithValue("@OBS", CH.obs);
                 cmd.Parameters.AddWithValue("@USUARIO", CH.usuario);
                 cmd.Parameters.AddWithValue("@CONDICION", "1");
+                cmd.Parameters.AddWithValue("@ID_CHEQUERA", "1004");
                 int a = cmd.ExecuteNonQuery();
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -345,6 +347,38 @@ namespace CAPA_DATOS
             if (con.State == ConnectionState.Open) { con.Close(); }
             return dt;
         }
+
+        //TRAEMOS EL NUMERO MINIMO QUE DEBE IR DE INICIO PAR ALA SIGUIEN CHEQUERA
+        public DataTable DNUMERO_DEINICIO_CHEQUERA(string tipo,string id_cuentas, string estado)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                if (con.State == ConnectionState.Closed) { con.Open(); }
+                SqlCommand cmd = new SqlCommand("SP_CHEQUERAS_NUMEROS", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@TIPO", tipo);
+                cmd.Parameters.AddWithValue("@ID_CUENTAS", id_cuentas);
+                cmd.Parameters.AddWithValue("@ESTADO", estado);
+                
+                int a = cmd.ExecuteNonQuery();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                da.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+
+                System.Console.Write(ex.Message);
+            }
+
+            if (con.State == ConnectionState.Open) { con.Close(); }
+            return dt;
+        }
+
+
 
         //LLENA LAS GRILLAS DEL POPUP DE SELECCIONAR CHEQUERA
         public DataTable DLLENARGRILLACHEQUERAS_EMIT(string id_cuenta,string tipo)
@@ -375,6 +409,33 @@ namespace CAPA_DATOS
             return dt;
         }
 
+        //NUMERO CORRELATIVO
+        public DataTable DCORRELATIVO(string CHEQUERA)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                if (con.State == ConnectionState.Closed) { con.Open(); }
+                SqlCommand cmd = new SqlCommand("SP_LISTAR_CORRELATIVO", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ID_CHEQUERA", CHEQUERA);
+               
+                int a = cmd.ExecuteNonQuery();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                da.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+
+                System.Console.Write(ex.Message);
+            }
+
+            if (con.State == ConnectionState.Open) { con.Close(); }
+            return dt;
+        }
 
         //LISTAMOS LOS NUMEROS DE CHEQUES PARA QUE NO PERMITA REGISTRAR REPETIDOS
         public DataTable DLISTAR_CORRELATIVO_CHEQUERAS_EMIT(string id_chequeras)
@@ -460,6 +521,35 @@ namespace CAPA_DATOS
             if (con.State == ConnectionState.Open) { con.Close(); }
             return dt;
         }
+
+        //TRAEMOS EL TOTAL GIRADO
+        public DataTable DTOTAL_GIRADO(string id_chequeras)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                if (con.State == ConnectionState.Closed) { con.Open(); }
+                SqlCommand cmd = new SqlCommand("SP_TOTAL_GIRADOS", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ID_CHEQUERA", id_chequeras);
+
+                int a = cmd.ExecuteNonQuery();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                da.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+
+                System.Console.Write(ex.Message);
+            }
+
+            if (con.State == ConnectionState.Open) { con.Close(); }
+            return dt;
+        }
+
 
         //LISTAMOS EL PROVEEDOR PARA EL EDITAR DE LA GRILLA CHEQUES EMITIDOS
         public DataTable DLISTAR_PROVEEDOR(string id_cheque)
@@ -635,6 +725,19 @@ namespace CAPA_DATOS
             DataSet ds = new DataSet();
             da.Fill(ds);
             return ds;
+        }
+
+        public DataTable DVALIDAR_PRO(string PRO)
+        {
+            if (con.State == ConnectionState.Closed) { con.Open(); }
+            SqlCommand cmd = new SqlCommand("SP_VALIDAR_PRO", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ID_PROVEEDOR", PRO);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            return dt;
         }
 
     }

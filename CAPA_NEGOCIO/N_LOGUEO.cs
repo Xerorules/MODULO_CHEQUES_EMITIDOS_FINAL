@@ -49,9 +49,9 @@ namespace CAPA_NEGOCIO
             return OBJLOGUEO.CONSULTAR_VISTA_SEDE(ID_SEDE);
         }
 
-        public string NREGISTRARCHEQUE(E_CHEQUES CHQ,string cond)
+        public string NREGISTRARCHEQUE(E_CHEQUES CHQ,string cond,string id_chequera)
         {
-            return OBJLOGUEO.DREGISTRARCHEQUERAS(CHQ,cond);
+            return OBJLOGUEO.DREGISTRARCHEQUERAS(CHQ,cond, id_chequera);
         }
 
         public DataTable NREGISTRARCHEQUE_EM(E_CH_EMITIDOS CHQ_EM, string cond)
@@ -99,6 +99,11 @@ namespace CAPA_NEGOCIO
             return OBJLOGUEO.DLISTAR_CORRELATIVO_INI_FIN(id_chequera);
         }
 
+        public DataTable NTOTALGIRADO(string id_chequera)
+        {
+            return OBJLOGUEO.DTOTAL_GIRADO(id_chequera);
+        }
+
         public DataTable NLISTAR_PROVEEDORES_CHEMIT(string id_cheque)
         {
             return OBJLOGUEO.DLISTAR_PROVEEDOR(id_cheque);
@@ -142,6 +147,11 @@ namespace CAPA_NEGOCIO
         public DataSet REPORTE_CHEQUES_EMITIDOS_DIFERIDO(string ID_CHEQUE, string TIPO)
         {
             return OBJLOGUEO.REPORTE_CHEQUES_DIFERIDO(ID_CHEQUE, TIPO);
+        }
+
+        public DataTable NCLI_VALIDAR(string ID_CLI)
+        {
+            return OBJLOGUEO.DVALIDAR_PRO(ID_CLI);
         }
     }
 }
